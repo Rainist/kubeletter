@@ -1,0 +1,17 @@
+version: '2'
+services:
+  redis:
+    image: redis
+    volumes:
+      - ./tmp/docker/redis/data:/data
+  app:
+    build: ./kubeletter/
+    volumes:
+      - ./kubeletter:/code
+    command: lein run
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    ports:
+      - "3000:3000"

@@ -1,0 +1,14 @@
+FROM clojure:lein-2.7.1
+
+ENV KUBECTL_VERSION=v1.8.1
+
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl \
+  && mv kubectl /usr/local/bin/kubectl \
+  && chmod +x /usr/local/bin/kubectl
+
+RUN echo "alias kubectl=\"kubectl --server=http://\$KUBERNETES_SERVICE_HOST:\$KUBERNETES_SERVICE_PORT\"" >> ~/.bashrc
+
+RUN mkdir -p /code
+WORKDIR /code
+COPY project.clj /code
+RUN lein deps
