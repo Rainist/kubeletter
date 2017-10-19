@@ -6,23 +6,30 @@
   (:out (:proc result)))
 
 (defn- val-unit [reg value]
-  (vec (rest (re-find reg value))))
+  (-> (re-find reg value)
+      rest
+      vec))
 
 (defn- num-unit [unit value]
-  (let [reg-text (str "([0-9]+)(" unit ")")
-        reg (re-pattern reg-text)]
-    (val-unit reg value)))
+  (-> (re-pattern (str "([0-9]+)(" unit ")"))
+      (val-unit value)))
 
 (defn- simple-num-unit-fn [unit]
   (fn [value]
     (let [[val unit-val] (num-unit unit value)]
-      (list
-       (read-string val)
-       unit-val))))
+      (list (read-string val) unit-val))))
 
-(defn- trans-num []
+(defn- read-string-fn []
+  (fn [value] (read-string value)))
+
+(defn- targets-fn []
   (fn [value]
-    (read-string value)))
+    (let [reg #"([0-9]+)(%) / ([0-9]+)%"
+          [_ numerator num-unit denominator] (re-find reg value)]
+      (list
+       (read-string numerator)
+       num-unit
+       (read-string denominator)))))
 
 (def conversions
   {"CPU(cores)"
@@ -34,36 +41,25 @@
    "MEMORY%"
    (simple-num-unit-fn "%"),
    "MINPODS"
-   (trans-num),
+   (read-string-fn),
    "MAXPODS"
-   (trans-num),
+   (read-string-fn),
    "REPLICAS"
-   (trans-num),
+   (read-string-fn),
    "AGE"
    (simple-num-unit-fn "d"),
    "TARGETS"
-   (fn [value]
-     (let [reg #"([0-9]+)(%) / ([0-9]+)%"
-           [_ numerator num-unit denominator] (re-find reg value)]
-       (list
-        (read-string numerator)
-        num-unit
-        (read-string denominator)))),
+   (targets-fn),
    })
 
 (defn- converter [key value]
   (if (some #(= key %) (keys conversions))
-    (let [func (conversions key)]
-      {key (func value)})
+    {key (-> value ((conversions key)))}
     {key value}))
 
 (defn- convert-row [row]
-  (apply
-   merge
-   (map
-    (fn [[k v]]
-      (converter k v))
-    row)))
+  (->> (map (fn [[k v]] (converter k v)) row)
+       (apply merge)))
 
 (defn- convert [raw-parsed]
   (vec (map convert-row raw-parsed)))
