@@ -1,6 +1,8 @@
 (ns kubeletter.schedule
   (:require [hara.io.scheduler :as hs]))
 
+(def ^:private sch nil)
+
 (defn start []
   (def sch (hs/scheduler
             {:print-task

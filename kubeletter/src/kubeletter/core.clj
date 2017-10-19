@@ -3,6 +3,7 @@
   (:require [ring.adapter.jetty :as jetty]
             [kubeletter.schedule :as sch]
             [kubeletter.kubectl :as kctl]
+            [kubeletter.deliver.deliverer :as deliverer]
             ))
 
 
@@ -13,4 +14,5 @@
 
 (defn -main [& args]
   ;; (sch/start)
+  (deliverer/register)
   (jetty/run-jetty handler {:port 3000}))
