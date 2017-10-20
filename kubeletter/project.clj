@@ -8,6 +8,7 @@
                  [ring/ring-jetty-adapter "1.5.0"]
                  [im.chit/hara.io.scheduler "2.5.10"]
                  [me.raynes/conch "0.8.0"]
+                 [clj-time "0.14.0"]
                  ]
   :main ^:skip-aot kubeletter.core
   :target-path "target/%s"

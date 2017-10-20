@@ -3,17 +3,32 @@
             [kubeletter.stores.mem-store :as mem])
   )
 
-(def ^:private chosen-store `mem) ;; default store
+(def ^:private chosen-store 'mem) ;; default store
 
 (defn decide-store []
   (let [redis-url (System/getenv "REDIS_URL")]
     (if redis-url
-      (def chosen-store `redis))))
+      (def chosen-store 'redis))))
 
-(defn set-val [key value]
-  (`chosen-store/set-val key value))
+(defn- store-symbol [fn-symbol]
+  (symbol (name chosen-store) (name fn-symbol)))
 
-(defn get-val [key]
-  (`chosen-store/get-val key))
+(defn- local-sym-resolve [lc-symbol]
+  (ns-resolve 'kubeletter.store lc-symbol))
 
-(defn tidy [])
+(defn- delegate [fn-symbol args]
+  (-> (store-symbol fn-symbol)
+      local-sym-resolve
+      (apply args)))
+
+(defn set-val [& args]
+  (delegate 'set-val args))
+
+(defn get-val [& args]
+  (delegate 'get-val args))
+
+(defn debug [& args]
+  (delegate 'debug args))
+
+(defn tidy [& args]
+  (delegate 'tidy args))

@@ -1,7 +1,9 @@
 (ns kubeletter.analyzer-test
   (:require [clojure.data :as data :refer [diff]])
   (:require [clojure.test :refer :all]
-            [kubeletter.analyzer :refer :all])
+            [kubeletter.analyzer :refer :all]
+            [clj-time.core :as t]
+            )
   (:use [clojure.pprint]))
 
 (def
@@ -82,7 +84,8 @@
        (testing "different number")))
 
 (deftest analyze-test
-  (-> (analyze "MOCK_TIMESTAMP")
-       (contains? :top-node)
-       (testing "analyze")))
+  (-> (t/date-time 1984 9 26)
+      analyze
+      (contains? :top-node)
+      (testing "analyze")))
 

@@ -1,5 +1,9 @@
 (ns kubeletter.analyzer
-  (:require [clojure.data :as data :refer [diff]])
+  (:require [clojure.data :as data :refer [diff]]
+            [clj-time.core :as t]
+            [clj-time.format :as f]
+            [kubeletter.store :as store]
+            )
   )
 
 ;;TODO: divide this module into
@@ -70,6 +74,12 @@
                (apply merge)))
         )))
 
+(def ^:private custom-formatter (f/formatter "yyyy-MM-dd hh:mm"))
+
+(defn kube-key [kube-keyword timestamp]
+  (-> (f/unparse custom-formatter timestamp)
+      (str " " kube-keyword)))
+
 (defn compare-kube [past fresh]
   (let [[t-names a-names e-names] (diff-kube-names past fresh)]
     {:terminated
@@ -84,17 +94,25 @@
      (filter-by-names (or a-names []) fresh),
     }))
 
-(defn- fetch [kube-keyword]
-  ;;TODO: implement
-  (list {} {})
-  )
+(defn- fetch
+  ([kube-job-key]
+   (-> (store/get-val kube-job-key)
+       (or {})))
+
+  ([kube-keyword timestamp]
+   (let [fresh-key (kube-key kube-keyword timestamp)
+         an-hour-ago-key (kube-key kube-keyword (t/minus timestamp (t/hours 1)))]
+     (list
+      (fetch an-hour-ago-key)
+      (fetch fresh-key)
+      ))))
 
 (defn analyze [timestamp]
   (apply merge
    (map
     (fn [kube-keyword]
       {kube-keyword
-       (->> (fetch kube-keyword)
+       (->> (fetch kube-keyword timestamp)
             (apply compare-kube))})
     [:top-node
      ;; :top-pod-prod :top-pod-dev :hpa-prod :hpa-dev

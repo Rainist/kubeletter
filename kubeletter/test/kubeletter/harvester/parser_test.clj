@@ -24,25 +24,25 @@
   )
 
 (deftest parser-raw-test
-  (testing "top node"
+  (testing "top node (unordered)"
     (is (=
          (parse-test
           {:proc
            {:out
             '("NAME                                               CPU(cores)   CPU%      MEMORY(bytes)   MEMORY%   "
-              "ip-172-20-62-138.ap-northeast-1.compute.internal   154m         7%        3827Mi          48%       "
               "ip-172-20-39-187.ap-northeast-1.compute.internal   365m         9%        7480Mi          46%       "
+              "ip-172-20-62-138.ap-northeast-1.compute.internal   154m         7%        3827Mi          48%       "
               )}})
-         '[{"NAME" "ip-172-20-62-138.ap-northeast-1.compute.internal",
-            "CPU(cores)" "154m",
-            "CPU%" "7%",
-            "MEMORY(bytes)" "3827Mi",
-            "MEMORY%" "48%"}
-           {"NAME" "ip-172-20-39-187.ap-northeast-1.compute.internal",
+         '[{"NAME" "ip-172-20-39-187.ap-northeast-1.compute.internal",
             "CPU(cores)" "365m",
             "CPU%" "9%",
             "MEMORY(bytes)" "7480Mi",
-            "MEMORY%" "46%"}]
+            "MEMORY%" "46%"}
+           {"NAME" "ip-172-20-62-138.ap-northeast-1.compute.internal",
+            "CPU(cores)" "154m",
+            "CPU%" "7%",
+            "MEMORY(bytes)" "3827Mi",
+            "MEMORY%" "48%"}]
          )))
 
   (testing "top pod"
@@ -55,12 +55,12 @@
               "banksalad-certificate-web-2605397671-ktb92              0m           120Mi           "
               )}}
           )
-         '[{"NAME" "simon-3770191713-xgpww",
-            "CPU(cores)" "18m",
-            "MEMORY(bytes)" "303Mi"}
-           {"NAME" "banksalad-certificate-web-2605397671-ktb92",
+         '[{"NAME" "banksalad-certificate-web-2605397671-ktb92",
             "CPU(cores)" "0m",
-            "MEMORY(bytes)" "120Mi"}]
+            "MEMORY(bytes)" "120Mi"}
+           {"NAME" "simon-3770191713-xgpww",
+            "CPU(cores)" "18m",
+            "MEMORY(bytes)" "303Mi"}]
          )))
 
   (testing "hpa"

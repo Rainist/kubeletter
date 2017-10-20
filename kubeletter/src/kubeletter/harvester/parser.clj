@@ -41,9 +41,10 @@
     bodies)))
 
 (defn into-map [out]
-  (let [header (first out)
-        titles (split header #"\s+")
-        titles-and-range (split-range header titles)
-        bodies (rest out)]
-    (package titles-and-range bodies)))
-
+  (->> (let [header (first out)
+             titles (split header #"\s+")
+             titles-and-range (split-range header titles)
+             bodies (rest out)]
+         (package titles-and-range bodies))
+       (sort-by #(% "NAME"))
+       (into [])))
