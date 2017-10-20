@@ -1,4 +1,4 @@
-(ns kubeletter.parser
+(ns kubeletter.harvester.parser
   (:use [clojure.string :only (join split last-index-of trim)]))
 
 (defn- split-indices [line titles]

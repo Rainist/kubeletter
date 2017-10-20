@@ -1,4 +1,4 @@
-(ns kubeletter.kubectl
+(ns kubeletter.harvester.kubectl
   (:require [me.raynes.conch :refer [programs with-programs let-programs] :as sh]
             [clojure.string :as str]))
 

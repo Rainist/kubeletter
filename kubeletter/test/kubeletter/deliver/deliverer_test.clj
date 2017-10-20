@@ -1,4 +1,4 @@
-(ns kubeletter.deliverer-test
+(ns kubeletter.deliver.deliverer-test
   (:require [clojure.test :refer :all]
             [kubeletter.deliver.deliverer :refer :all]))
 

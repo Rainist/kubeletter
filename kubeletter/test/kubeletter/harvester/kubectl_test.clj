@@ -1,6 +1,6 @@
-(ns kubeletter.kubectl-test
+(ns kubeletter.harvester.kubectl-test
   (:require [clojure.test :refer :all]
-            [kubeletter.kubectl :refer :all]))
+            [kubeletter.harvester.kubectl :refer :all]))
 
 (defn exit-code [result]
   @(:exit-code result))

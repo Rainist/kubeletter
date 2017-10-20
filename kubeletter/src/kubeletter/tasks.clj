@@ -1,7 +1,7 @@
 (ns kubeletter.tasks
   (:require
-   [kubeletter.kubectl :as kubectl :refer [top-node top-pod hpa]]
-   [kubeletter.kube-parser :as kube-parser :refer [parse-kube]]
+   [kubeletter.harvester.kubectl :as kubectl :refer [top-node top-pod hpa]]
+   [kubeletter.harvester.kube-parser :as kube-parser :refer [parse-kube]]
    [kubeletter.analyzer :as analyzer :refer [analyze]]
    [kubeletter.store :as store :refer [set-val]]
    [kubeletter.reporter :as reporter :refer [report]]

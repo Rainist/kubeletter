@@ -2,7 +2,6 @@
   (:gen-class)
   (:require [ring.adapter.jetty :as jetty]
             [kubeletter.schedule :as sch]
-            [kubeletter.kubectl :as kctl]
             [kubeletter.deliver.deliverer :as deliverer]
             ))
 

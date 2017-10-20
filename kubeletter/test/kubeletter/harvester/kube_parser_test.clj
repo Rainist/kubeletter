@@ -1,7 +1,7 @@
-(ns kubeletter.kube-parser-test
+(ns kubeletter.harvester.kube-parser-test
   (:require [clojure.test :refer :all]
-            [kubeletter.kubectl :refer :all]
-            [kubeletter.kube-parser :refer :all])
+            [kubeletter.harvester.kubectl :refer :all]
+            [kubeletter.harvester.kube-parser :refer :all])
   (:use [clojure.pprint]))
 
 (deftest kube-parser-test
