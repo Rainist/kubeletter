@@ -2,6 +2,15 @@
   (:require [clojure.test :refer :all]
             [kubeletter.tasks :refer :all]))
 
-(deftest tasks-test
-  (testing "tasks-test"
-    (is (= true true))))
+(def ^:private parse-namespaces #'kubeletter.tasks/parse-namespaces)
+
+(deftest namspaces-test
+  (->> (parse-namespaces "")
+       (= '())
+       is
+       (testing "parse namespaces: \"\""))
+
+  (->> (parse-namespaces nil)
+       (= '())
+       is
+       (testing "parse namespaces nil")))

@@ -66,13 +66,6 @@
 
 (defn parse-kube [kube-result]
   ;;TODO: must handle about exit code 1
-  (let [raw-parsed (into-map (out kube-result))]
-    ;; (pprint {:proc {:out (out kube-result)}})
-    ;; (println "")
-    ;; ;; (pprint (vec (take 2 raw-parsed)))
-    ;; ;; (println "")
-    ;; (pprint (convert (vec (take 2 raw-parsed))))
-    ;; (println "")
-    (vec (convert raw-parsed))
-    )
-  )
+  (-> (-> kube-result out into-map)
+      convert
+      vec))
