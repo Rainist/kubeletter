@@ -1,26 +1,24 @@
 (ns kubeletter.deliver.deliverer
-  (:require [kubeletter.deliver.slack :as slack])
-  )
+  (:require [kubeletter.deliver.slack :as slack]
+            [kubeletter.deliver.console :as console]
+            [kubeletter.formatter.formatter :as formatter]
+  ))
 
-(def ^:private deliverers {})
+(def ^:private deliverers {:console #(console/hand-over %)})
 
 (defn registered-deliverers []
   (keys deliverers))
 
 (defn register []
-  (let [slack-webhook-url (System/getenv "DELIVER_SLACK_WEBHOOK_URL")]
-    (if slack-webhook-url
-      (def
-        deliverers
-        (conj
-         deliverers
-         {:slack
-          (fn [msg]
-            (slack/hand-over msg)
-            )})))))
+  (if (slack/registerable?)
+    (def deliverers
+      (-> deliverers (conj {:slack #(slack/hand-over %)})))))
+
+(defn- format-msg [deliverer msg]
+  (formatter/cook deliverer msg))
 
 (defn hand-over [msg]
-  (map
-   (fn [[deliverer deliver-fn]]
-     {deliverer (deliver-fn msg)})
-   (into [] deliverers)))
+  (->> deliverers
+       (map (fn [[deliverer deliver-fn]]
+              {deliverer
+               (->> msg (format-msg deliverer) deliver-fn)}))))

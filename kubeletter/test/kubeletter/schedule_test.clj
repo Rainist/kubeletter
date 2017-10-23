@@ -7,7 +7,7 @@
 (deftest report-with-simulated-schedule
   ;; DO NOT UNCOMMENT THIS TEST
   ;; (def ^:private T1 #inst "2017-10-19T00:00:00.00-00:00")
-  ;; (def ^:private T2 #inst "2017-10-19T02:00:00.00-00:00")
+  ;; (def ^:private T2 #inst "2017-10-19T02:00:01.00-00:00")
 
   ;; (hs/simulate
   ;;  (schedules)
