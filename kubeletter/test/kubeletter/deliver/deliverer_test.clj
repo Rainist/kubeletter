@@ -7,4 +7,4 @@
     (register)
     (is (=
          (map (fn [key] {key true}) (registered-deliverers)) ;; ex) '({:slack true})
-         (hand-over "msg")))))
+         (hand-over {:top-node {}})))))
