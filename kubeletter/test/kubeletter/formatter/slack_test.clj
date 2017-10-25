@@ -66,7 +66,7 @@
       "text" "*3* nodes",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "removed", "value" "*↓* *_3_*", "short" true}
+      [{"title" "removed", "value" "*↓* *_1_*", "short" true}
        {"title" "added", "value" "*↑* *`1`*", "short" true}
        {"title" "", "value" "Average", "short" false}
        {"title" "CPU(cores)",

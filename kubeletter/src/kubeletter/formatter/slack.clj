@@ -81,10 +81,11 @@
          add-title-to-existed)))
 
 (defn- node-count-changes [terminated existed added]
-  {:added
+  {:current
    (-> (first existed)
        count
        (+ (count added)))
+   :added (count added)
    :removed
    (count terminated)
    })
@@ -140,17 +141,23 @@
               (s-field key (str (apply str val) " " comp-val)))
             )))))
 
+(defn- node-count-fields [count-changes]
+  (let [added-count (count-changes :added)
+        removed-count (count-changes :removed)]
+    [(s-field "removed"
+              (if (= 0 removed-count) "-"
+                  (str "*↓* *_" removed-count "_*")))
+     (s-field "added"
+              (if (= 0 added-count) "-"
+                  (str "*↑* *`" added-count "`*")))]))
+
 (defn- node-summary [terminated existed added]
-  (let [count-changes (node-count-changes terminated existed added)
-        added-count (count-changes :added)
-        removed-count (count-changes :removed)
-        ]
-    {:node-count added-count
+  (let [count-changes (node-count-changes terminated existed added)]
+    {:node-count (count-changes :current)
      :fields
      (vec
-      (-> [(s-field "removed" (str "*↓* *_" added-count "_*"))
-           (s-field "added" (str "*↑* *`" removed-count "`*"))
-           (s-field-divider "Average")]
+      (-> (node-count-fields count-changes)
+          (conj (s-field-divider "Average"))
           (concat
            (let [[cpu-core cpu-percent mem-bytes mem-percent] (node-avg-fields existed)]
              [cpu-core mem-bytes cpu-percent mem-percent])
