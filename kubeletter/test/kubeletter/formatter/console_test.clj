@@ -66,7 +66,6 @@ ip-172-20-12-18.ap-northeast-1.compute.internal	(365 \"m\")	(9 \"%\")	(7480 \"Mi
 
 (->> (-> {:top-node (top-node-results :top-node-sample)}
          cook
-         first
          (:top-node))
      (= top-node-expected)
      is

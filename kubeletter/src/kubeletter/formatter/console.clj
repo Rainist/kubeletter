@@ -63,4 +63,5 @@
 
 (defn cook [msg]
   (->> msg
-       (map (fn [[job-id job-result]] (cook-by-job job-id job-result)))))
+       (map (fn [[job-id job-result]] (cook-by-job job-id job-result)))
+       (apply merge)))

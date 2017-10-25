@@ -119,7 +119,6 @@
 
 (->> (-> {:top-node (top-node-results :top-node-sample)}
          cook
-         first
          (:top-node))
      (diff (->> top-node-expected json/read-str))
      ((fn [[left right _]] (= left right)))

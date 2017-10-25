@@ -124,10 +124,11 @@
        (apply merge)))
 
 (defn- node-avg-simple [comps]
-  (->> comps
-       (reduce sum-row)
-       (map (fn [[k v]] {k (divide-by v (count comps))}))
-       (apply merge)))
+  (if (empty? comps) {}
+      (->> comps
+           (reduce sum-row)
+           (map (fn [[k v]] {k (divide-by v (count comps))}))
+           (apply merge))))
 
 (defn- node-avg-fields [existed]
   (let [node-avg-curr (->> (first existed) node-avg-simple)
@@ -193,4 +194,5 @@
 (defn cook [msg]
   (->> msg
        (map (fn [[job-id job-result]]
-              (cook-by-job job-id job-result)))))
+              (cook-by-job job-id job-result)))
+       (apply merge)))
