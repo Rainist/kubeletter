@@ -4,6 +4,7 @@
             [kubeletter.schedule :as sch]
             [kubeletter.deliver.deliverer :as deliverer]
             [kubeletter.tasks :as tasks]
+            [kubeletter.store :as store]
             ))
 
 (defn handler [request]
@@ -12,7 +13,8 @@
    :body "hello World"})
 
 (defn -main [& args]
-  (sch/start)
   (tasks/fetch-namespaces)
   (deliverer/register)
+  (store/decide-store)
+  (sch/start)
   (jetty/run-jetty handler {:port 3000}))

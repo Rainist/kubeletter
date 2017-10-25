@@ -6,9 +6,8 @@
 (def ^:private chosen-store 'mem) ;; default store
 
 (defn decide-store []
-  (let [redis-url (System/getenv "REDIS_URL")]
-    (if redis-url
-      (def chosen-store 'redis))))
+  (if (redis/selectable?)
+    (def chosen-store 'redis)))
 
 (defn- store-symbol [fn-symbol]
   (symbol (name chosen-store) (name fn-symbol)))

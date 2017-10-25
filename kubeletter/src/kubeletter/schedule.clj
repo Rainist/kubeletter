@@ -10,7 +10,7 @@
   (if (params :simulation)
     (if-not (params :simulation-quite)
       (println sch-name " schedule simulation! - " t)))
-  (params :simulation))
+  (= true (params :simulation)))
 
 (defn schedules []
   (hs/scheduler
@@ -30,4 +30,6 @@
     ;; }))
 
 (defn start []
-  (hs/start! (schedules)))
+  (println "Schedule starting..")
+  (hs/start! (schedules))
+  (println "Schedule has started!"))

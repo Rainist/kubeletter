@@ -18,6 +18,31 @@
   ;;   })
   )
 
+(def ^:private simulation? #'kubeletter.schedule/simulation?)
+(defn- sim? [params]
+  (simulation?
+   #inst "2017-10-19T00:00:00.00-00:00"
+   params :test-sch))
+
+(deftest simulation?-test
+  (->> (sim? {:simulation true})
+       (= true)
+       is
+       (testing "simulation true => true"))
+  (->> (sim? {:simulation false})
+       (= false)
+       is
+       (testing "simulation false => false"))
+  (->> (sim? {:simulation nil})
+       (= false)
+       is
+       (testing "simulation nil => false"))
+  (->> (sim? {})
+       (= false)
+       is
+       (testing "simulation empty => false"))
+  )
+
 (deftest simluate-test
   (def ^:private call-times 0)
   (def ^:private test-schedules
