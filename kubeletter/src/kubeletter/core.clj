@@ -12,7 +12,7 @@
    :body "hello World"})
 
 (defn -main [& args]
-  ;; (sch/start)
+  (sch/start)
   (tasks/fetch-namespaces)
   (deliverer/register)
   (jetty/run-jetty handler {:port 3000}))
