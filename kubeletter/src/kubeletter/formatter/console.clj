@@ -59,7 +59,7 @@
   {job-id
    (case job-id
      :top-node (cook-top-node result)
-     :cook-str (cook-str result))})
+     (cook-str result))})
 
 (defn cook [msg]
   (->> msg

@@ -70,5 +70,6 @@ ip-172-20-12-18.ap-northeast-1.compute.internal	(365 \"m\")	(9 \"%\")	(7480 \"Mi
          (:top-node))
      (= top-node-expected)
      is
-     (testing "deliver via console test")
-     (deftest deliver-via-console-test))
+     (testing "format for console test")
+     (deftest format-for-console-test))
+
