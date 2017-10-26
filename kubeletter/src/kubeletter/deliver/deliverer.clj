@@ -21,4 +21,8 @@
   (->> deliverers
        (map (fn [[deliverer deliver-fn]]
               {deliverer
-               (->> msg (format-msg deliverer) deliver-fn)}))))
+               (->> msg (format-msg deliverer) deliver-fn)}))
+       doall
+       (apply merge)
+       vals
+       (reduce #(= %1 %2 true))))
