@@ -77,6 +77,13 @@
        (testing "same"))
 
   (->> (compare-kube
+        {}
+        (:simple top-node-samples))
+       (= (:simple-same top-node-results))
+       is
+       (testing "same"))
+
+  (->> (compare-kube
         (:simple top-node-samples)
         (:simple-diff-num top-node-samples))
        (= (:simple-diff-num-diffed top-node-results))

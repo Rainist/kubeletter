@@ -80,8 +80,9 @@
   (-> (f/unparse custom-formatter timestamp)
       (str " " kube-keyword)))
 
-(defn compare-kube [past fresh]
-  (let [[t-names a-names e-names] (diff-kube-names past fresh)]
+(defn compare-kube [passed-past fresh]
+  (let [past (if (empty? passed-past) fresh passed-past) ;;compare with itself if no past provided
+        [t-names a-names e-names] (diff-kube-names past fresh)]
     {:terminated
      (filter-by-names (or t-names []) past),
      :existed

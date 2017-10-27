@@ -1,6 +1,6 @@
 (ns kubeletter.formatter.slack
   (:require [clojure.data.json :as json]
-            [clojure.string :as str :refer [join]]))
+            [clojure.string :as str :refer [join trim]]))
 
 (defn- cook-etc [data]
   data)
@@ -13,10 +13,11 @@
 (defn str-comp-field [comp]
   ;; ex) {"title" "CPU(cores)", "value" "1229m *↑* *`30m`*", "short" true}
   (let [[number unit] comp
-        prefix (if (>= number 0) "*↑*" "*↓*")
+        sign-prefix (if (>= number 0) "*↑*" "*↓*")
         format-prefix (if (>= number 0) (str "*`" ) (str "*_"))
         format-suffix (str/reverse format-prefix)]
-    (str prefix " " format-prefix (max number (* -1 number)) unit format-suffix)))
+    (if (zero? number) ""
+        (str sign-prefix " " format-prefix (max number (* -1 number)) unit format-suffix))))
 
 
 (defn- top-node-field
@@ -26,8 +27,7 @@
   ([field curr comp]
    (let [curr-val (->> (curr field) (apply str))
          comp-val (comp field)
-         value
-         (str curr-val " " (str-comp-field comp-val))]
+         value (->> comp-val str-comp-field (str curr-val " ") trim)]
      {"title" field, "value" value, "short" true})))
 
 (defn- add-pretext-to-list [data title]
@@ -47,7 +47,8 @@
    "text"
    (->> data
         (map #(% "NAME"))
-        (join "\n"))
+        (join "\n")
+        (if (empty? data) "-"))
    "color" "#FFA500",
    "mrkdwn_in" ["text", "pretext", "fields"]})
 
@@ -63,6 +64,7 @@
              (->> ["CPU(cores)" "MEMORY(bytes)" "CPU%" "MEMORY%"]
                   (map #(top-node-field % row))
                   vec)})))
+       (if (empty? data) [{"title" "-"}])
        add-title-to-added))
 
 (defn- cook-node-existed [data]
@@ -138,8 +140,8 @@
          (map
           (fn [[key val]]
             (let [comp-val (-> key node-avg-comp str-comp-field)]
-              (s-field key (str (apply str val) " " comp-val)))
-            )))))
+              (->> (-> (apply str val) (str " " comp-val) trim)
+                   (s-field key))))))))
 
 (defn- node-count-fields [count-changes]
   (let [added-count (count-changes :added)
