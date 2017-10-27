@@ -8,5 +8,8 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_
 
 RUN mkdir -p /code
 WORKDIR /code
-COPY project.clj /code
+COPY kubeletter/project.clj /code
 RUN lein deps
+
+COPY kubeletter /code
+CMD lein run
