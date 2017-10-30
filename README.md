@@ -11,10 +11,26 @@ Monitor k8s cluster by executing kubectl commands
 
 ## Prerequisites
 
-kubectl configure to connect to your k8s cluster
+configure `kubectl` to connect to your k8s cluster
+> this is already ready in k8s containers in most cases
 
 ## How to run
 
+### Use your local kubectl to develop
 
-## Tips
-- No need to provide kube related env inside k8s cluster to execute kubectl
+#### proxy
+
+```$ kubectl proxy --address="0.0.0.0" --accept-hosts '.*' --reject-methods=NONE```
+
+#### Example ENVs
+> if you use docker for mac
+
+```
+KUBERNETES_SERVICE_PORT=8001
+KUBERNETES_SERVICE_HOST=docker.for.mac.localhost
+```
+
+### Running as a k8s container
+
+Simply pass just `RUNNING_INSIDE_K8S=true` to run `kubectl` properly inside a k8s cluster
+> No need to provide kube related env inside k8s cluster to execute kubectl
