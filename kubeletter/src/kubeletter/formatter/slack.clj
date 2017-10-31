@@ -61,7 +61,7 @@
              "color" "#1E90FF",
              "mrkdwn_in" ["text" "pretext" "fields"],
              "fields"
-             (->> ["CPU(cores)" "MEMORY(bytes)" "CPU%" "MEMORY%"]
+             (->> ["CPU%" "MEMORY%" "CPU(cores)" "MEMORY(bytes)"]
                   (map #(top-node-field % row))
                   vec)})))
        (if (empty? data) [{"title" "-"}])
@@ -77,7 +77,7 @@
                "color" "gray",
                "mrkdwn_in" ["text" "pretext" "fields"],
                "fields"
-               (->> ["CPU(cores)" "MEMORY(bytes)" "CPU%" "MEMORY%"]
+               (->> ["CPU%" "MEMORY%" "CPU(cores)" "MEMORY(bytes)"]
                     (map #(top-node-field % row (comp-map row-name)))
                     vec)})))
          add-title-to-existed)))
@@ -146,10 +146,10 @@
 (defn- node-count-fields [count-changes]
   (let [added-count (count-changes :added)
         removed-count (count-changes :removed)]
-    [(s-field "removed"
+    [(s-field "Removed"
               (if (= 0 removed-count) "-"
                   (str "*↓* *_" removed-count "_*")))
-     (s-field "added"
+     (s-field "Added"
               (if (= 0 added-count) "-"
                   (str "*↑* *`" added-count "`*")))]))
 
@@ -162,7 +162,7 @@
           (conj (s-field-divider "Average"))
           (concat
            (let [[cpu-core cpu-percent mem-bytes mem-percent] (node-avg-fields existed)]
-             [cpu-core mem-bytes cpu-percent mem-percent])
+             [cpu-percent mem-percent cpu-core mem-bytes])
            )))
      }))
 
