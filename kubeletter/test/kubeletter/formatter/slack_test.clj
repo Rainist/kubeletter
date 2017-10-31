@@ -86,13 +86,13 @@
       [{"title" "Removed", "value" "*↓* *_1_*", "short" true}
        {"title" "Added", "value" "*↑* *`1`*", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU%", "value" "8.0% *↓* *_2.0%_*", "short" true}
-       {"title" "MEMORY%", "value" "47.0% *↑* *`20.0%`*", "short" true}
+       {"title" "CPU%", "value" "8.0%  *↓* *_2.0%_*", "short" true}
+       {"title" "MEMORY%", "value" "47.0%  *↑* *`20.0%`*", "short" true}
        {"title" "CPU(cores)",
-        "value" "259.5m *↑* *`95.0m`*",
+        "value" "259.5m  *↑* *`95.0m`*",
         "short" true}
        {"title" "MEMORY(bytes)",
-        "value" "5653.5Mi *↓* *_50.0Mi_*",
+        "value" "5653.5Mi  *↓* *_50.0Mi_*",
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
@@ -100,21 +100,21 @@
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU%", "value" "7% *↑* *`3%`*", "short" true}
-       {"title" "MEMORY%", "value" "48% *↑* *`30%`*", "short" true}
-       {"title" "CPU(cores)", "value" "154m *↓* *_10m_*", "short" true}
+      [{"title" "CPU%", "value" "7%  *↑* *`3%`*", "short" true}
+       {"title" "MEMORY%", "value" "48%  *↑* *`30%`*", "short" true}
+       {"title" "CPU(cores)", "value" "154m  *↓* *_10m_*", "short" true}
        {"title" "MEMORY(bytes)",
-        "value" "3827Mi *↓* *_600Mi_*",
+        "value" "3827Mi  *↓* *_600Mi_*",
         "short" true}]}
      {"title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU%", "value" "9% *↓* *_7%_*", "short" true}
-       {"title" "MEMORY%", "value" "46% *↑* *`10%`*", "short" true}
-       {"title" "CPU(cores)", "value" "365m *↑* *`200m`*", "short" true}
+      [{"title" "CPU%", "value" "9%  *↓* *_7%_*", "short" true}
+       {"title" "MEMORY%", "value" "46%  *↑* *`10%`*", "short" true}
+       {"title" "CPU(cores)", "value" "365m  *↑* *`200m`*", "short" true}
        {"title" "MEMORY(bytes)",
-        "value" "7480Mi *↑* *`500Mi`*",
+        "value" "7480Mi  *↑* *`500Mi`*",
         "short" true}]}
      ;;removed
      {"pretext" "Removed",
@@ -148,13 +148,13 @@
       [{"title" "Removed", "value" "-", "short" true}
        {"title" "Added", "value" "-", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU%", "value" "8.0% *↓* *_2.0%_*", "short" true}
-       {"title" "MEMORY%", "value" "47.0% *↑* *`20.0%`*", "short" true}
+       {"title" "CPU%", "value" "8.0%  *↓* *_2.0%_*", "short" true}
+       {"title" "MEMORY%", "value" "47.0%  *↑* *`20.0%`*", "short" true}
        {"title" "CPU(cores)",
-        "value" "259.5m *↑* *`95.0m`*",
+        "value" "259.5m  *↑* *`95.0m`*",
         "short" true}
        {"title" "MEMORY(bytes)",
-        "value" "5653.5Mi *↓* *_50.0Mi_*",
+        "value" "5653.5Mi  *↓* *_50.0Mi_*",
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
@@ -162,21 +162,21 @@
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU%", "value" "7% *↑* *`3%`*", "short" true}
-       {"title" "MEMORY%", "value" "48% *↑* *`30%`*", "short" true}
-       {"title" "CPU(cores)", "value" "154m *↓* *_10m_*", "short" true}
+      [{"title" "CPU%", "value" "7%  *↑* *`3%`*", "short" true}
+       {"title" "MEMORY%", "value" "48%  *↑* *`30%`*", "short" true}
+       {"title" "CPU(cores)", "value" "154m  *↓* *_10m_*", "short" true}
        {"title" "MEMORY(bytes)",
-        "value" "3827Mi *↓* *_600Mi_*",
+        "value" "3827Mi  *↓* *_600Mi_*",
         "short" true}]}
      {"title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU%", "value" "9% *↓* *_7%_*", "short" true}
-       {"title" "MEMORY%", "value" "46% *↑* *`10%`*", "short" true}
-       {"title" "CPU(cores)", "value" "365m *↑* *`200m`*", "short" true}
+      [{"title" "CPU%", "value" "9%  *↓* *_7%_*", "short" true}
+       {"title" "MEMORY%", "value" "46%  *↑* *`10%`*", "short" true}
+       {"title" "CPU(cores)", "value" "365m  *↑* *`200m`*", "short" true}
        {"title" "MEMORY(bytes)",
-        "value" "7480Mi *↑* *`500Mi`*",
+        "value" "7480Mi  *↑* *`500Mi`*",
         "short" true}]}
      ;;removed
      {"pretext" "Removed",

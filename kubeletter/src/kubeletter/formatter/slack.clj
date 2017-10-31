@@ -1,5 +1,6 @@
 (ns kubeletter.formatter.slack
   (:require [clojure.data.json :as json]
+            [kubeletter.utils.math :as math]
             [clojure.string :as str :refer [join trim]]))
 
 (defn- cook-etc [data]
@@ -13,7 +14,7 @@
 (defn str-comp-field [comp]
   ;; ex) {"title" "CPU(cores)", "value" "1229m *↑* *`30m`*", "short" true}
   (let [[number unit] comp
-        sign-prefix (if (>= number 0) "*↑*" "*↓*")
+        sign-prefix (if (>= number 0) " *↑*" " *↓*")
         format-prefix (if (>= number 0) (str "*`" ) (str "*_"))
         format-suffix (str/reverse format-prefix)]
     (if (zero? number) ""
@@ -116,7 +117,7 @@
    (fn [val-atom]
      (cond
        (= (type val-atom) (type 0))
-       (-> val-atom (/ num) float),
+       (-> val-atom (/ num) float (math/roundf 2)),
        :else val-atom))
    val))
 
