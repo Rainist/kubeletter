@@ -72,7 +72,7 @@
 
 (def ^:private top-node-expected
   {:mixed
-   {"text" "*[Node top]* Compare to this _1 hour ago_",
+   {"text" "*[Node Top]* compare to _1 hour ago_",
     "username" "kubeletter",
     "mrkdwn" true,
     "attachments"
@@ -86,13 +86,13 @@
       [{"title" "Removed", "value" "*↓* *_1_*", "short" true}
        {"title" "Added", "value" "*↑* *`1`*", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU%", "value" "8.0%  *↓* *_2.0%_*", "short" true}
-       {"title" "MEMORY%", "value" "47.0%  *↑* *`20.0%`*", "short" true}
+       {"title" "CPU%", "value" "8%  *↓* *_2%_*", "short" true}
+       {"title" "MEMORY%", "value" "47%  *↑* *`20%`*", "short" true}
        {"title" "CPU(cores)",
-        "value" "259.5m  *↑* *`95.0m`*",
+        "value" "259.5m  *↑* *`95m`*",
         "short" true}
        {"title" "MEMORY(bytes)",
-        "value" "5653.5Mi  *↓* *_50.0Mi_*",
+        "value" "5653.5Mi  *↓* *_50Mi_*",
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
@@ -134,7 +134,7 @@
      ],;; end of attachment
     },
    :no-removed-and-added
-   {"text" "*[Node top]* Compare to this _1 hour ago_",
+   {"text" "*[Node Top]* compare to _1 hour ago_",
     "username" "kubeletter",
     "mrkdwn" true,
     "attachments"
@@ -148,13 +148,13 @@
       [{"title" "Removed", "value" "-", "short" true}
        {"title" "Added", "value" "-", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU%", "value" "8.0%  *↓* *_2.0%_*", "short" true}
-       {"title" "MEMORY%", "value" "47.0%  *↑* *`20.0%`*", "short" true}
+       {"title" "CPU%", "value" "8%  *↓* *_2%_*", "short" true}
+       {"title" "MEMORY%", "value" "47%  *↑* *`20%`*", "short" true}
        {"title" "CPU(cores)",
-        "value" "259.5m  *↑* *`95.0m`*",
+        "value" "259.5m  *↑* *`95m`*",
         "short" true}
        {"title" "MEMORY(bytes)",
-        "value" "5653.5Mi  *↓* *_50.0Mi_*",
+        "value" "5653.5Mi  *↓* *_50Mi_*",
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
@@ -189,7 +189,7 @@
      ],;; end of attachment
     },
    :same
-   {"text" "*[Node top]* Compare to this _1 hour ago_",
+   {"text" "*[Node Top]* compare to _1 hour ago_",
     "username" "kubeletter",
     "mrkdwn" true,
     "attachments"
@@ -203,8 +203,8 @@
       [{"title" "Removed", "value" "-", "short" true}
        {"title" "Added", "value" "-", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU%", "value" "8.0%", "short" true}
-       {"title" "MEMORY%", "value" "47.0%", "short" true}
+       {"title" "CPU%", "value" "8%", "short" true}
+       {"title" "MEMORY%", "value" "47%", "short" true}
        {"title" "CPU(cores)",
         "value" "259.5m",
         "short" true}

@@ -13,7 +13,8 @@
 
 (defn str-comp-field [comp]
   ;; ex) {"title" "CPU(cores)", "value" "1229m *↑* *`30m`*", "short" true}
-  (let [[number unit] comp
+  (let [[raw-number unit] comp
+        number (math/roundf raw-number 2)
         sign-prefix (if (>= number 0) " *↑*" " *↓*")
         format-prefix (if (>= number 0) (str "*`" ) (str "*_"))
         format-suffix (str/reverse format-prefix)]
@@ -115,10 +116,8 @@
 (defn- divide-by [val num]
   (map
    (fn [val-atom]
-     (cond
-       (= (type val-atom) (type 0))
-       (-> val-atom (/ num) float (math/roundf 2)),
-       :else val-atom))
+     (if-not (number? val-atom) val-atom
+             (-> val-atom (/ num) float (math/roundf 2))))
    val))
 
 (defn- sum-row [left right]
@@ -182,7 +181,7 @@
      }))
 
 (defn- cook-top-node [data]
-  {"text" "*[Node top]* Compare to this _1 hour ago_",
+  {"text" "*[Node Top]* compare to _1 hour ago_",
    "username" "kubeletter",
    "mrkdwn" true,
    "attachments"
