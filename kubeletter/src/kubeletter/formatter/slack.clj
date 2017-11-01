@@ -45,14 +45,15 @@
   (add-pretext-to-list data "Indivisuals"))
 
 (defn- cook-node-removed [data]
-  {"pretext" "Removed",
-   "text"
-   (->> data
-        (map #(% "NAME"))
-        (join "\n")
-        (if (empty? data) "-"))
-   "color" "#FFA500",
-   "mrkdwn_in" ["text", "pretext", "fields"]})
+  (if (empty? data) nil
+      {"pretext" "Removed",
+       "text"
+       (->> data
+            (map #(% "NAME"))
+            (join "\n")
+            (if (empty? data) "-"))
+       "color" "#FFA500",
+       "mrkdwn_in" ["text", "pretext", "fields"]}))
 
 (defn- cook-node-added [data]
   (->> data
@@ -67,7 +68,8 @@
                   (map #(top-node-field % row))
                   vec)})))
        (if (empty? data) [{"title" "-"}])
-       add-title-to-added))
+       add-title-to-added
+       (if (empty? data) nil)))
 
 (defn- cook-node-existed [data]
   (let [comp-map (top-node-map (last data))]
@@ -191,6 +193,7 @@
          (-> (:added data) cook-node-added vec),
          ]
         (apply concat)
+        (remove nil?)
         vec),
    })
 

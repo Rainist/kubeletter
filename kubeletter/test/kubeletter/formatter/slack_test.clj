@@ -133,7 +133,7 @@
        {"title" "MEMORY(bytes)", "value" "7480Mi", "short" true}]}
      ],;; end of attachment
     },
-   :no-removed-and-added
+   :no-added-and-removed
    {"text" "*[Node Top]* compare to _1 hour ago_",
     "username" "kubeletter",
     "mrkdwn" true,
@@ -178,14 +178,7 @@
        {"title" "MEMORY(bytes)",
         "value" "7480Mi  *↑* *`500Mi`*",
         "short" true}]}
-     ;;removed
-     {"pretext" "Removed",
-      "text" "-",
-      "color" "#FFA500",
-      "mrkdwn_in" ["text" "pretext" "fields"]}
-     ;;added
-     {"pretext" "Added",
-      "title" "-"},
+     ;;removed and addded are omitted
      ],;; end of attachment
     },
    :same
@@ -233,14 +226,7 @@
        {"title" "MEMORY(bytes)",
         "value" "7480Mi",
         "short" true}]}
-     ;;removed
-     {"pretext" "Removed",
-      "text" "-",
-      "color" "#FFA500",
-      "mrkdwn_in" ["text" "pretext" "fields"]}
-     ;;added
-     {"pretext" "Added",
-      "title" "-"},
+     ;;removed and addded are omitted
      ],;; end of attachment
     },
    })
@@ -257,7 +243,7 @@
   (->> (-> {:top-node (top-node-results :no-added-and-removed)}
            cook
            (:top-node))
-       (diff (->> top-node-expected :no-removed-and-added))
+       (diff (->> top-node-expected :no-added-and-removed))
        ((fn [[left right _]] (= left right)))
        is
        (testing "format for no added and removed"))
