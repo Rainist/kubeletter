@@ -70,8 +70,7 @@
       "text" "*3* nodes",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "Removed", "value" "*↓* *_1_*", "short" true}
-       {"title" "Added", "value" "*↑* *`1`*", "short" true}
+      [{"title" "Removed / Added", "value" "*↓* *_1_* / *↑* *`1`*", "short" true}
        {"title" "", "value" "Average", "short" false}
        {"title" "CPU%", "value" "8%  *↓* *_2%_*", "short" true}
        {"title" "MEMORY%", "value" "47%  *↑* *`20%`*", "short" true}
@@ -132,8 +131,7 @@
       "text" "*2* nodes",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "Removed", "value" "-", "short" true}
-       {"title" "Added", "value" "-", "short" true}
+      [{"title" "Removed / Added", "value" "- / -", "short" true}
        {"title" "", "value" "Average", "short" false}
        {"title" "CPU%", "value" "8%  *↓* *_2%_*", "short" true}
        {"title" "MEMORY%", "value" "47%  *↑* *`20%`*", "short" true}
@@ -180,8 +178,7 @@
       "text" "*2* nodes",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "Removed", "value" "-", "short" true}
-       {"title" "Added", "value" "-", "short" true}
+      [{"title" "Removed / Added", "value" "- / -", "short" true}
        {"title" "", "value" "Average", "short" false}
        {"title" "CPU%", "value" "8%", "short" true}
        {"title" "MEMORY%", "value" "47%", "short" true}
@@ -261,4 +258,3 @@
        ((fn [[left right _]] (= left right)))
        is
        (testing "node avg fields")))
-

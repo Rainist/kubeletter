@@ -145,15 +145,25 @@
               (->> (-> (apply str val) (str " " comp-val) trim)
                    (s-field key))))))))
 
+(defn- merge-s-fields [left right]
+  (let [additional-stuff (-> left (dissoc "title") (dissoc "value"))
+        l-title (left "title") r-title (right "title")
+        l-val (left "value") r-val (right "value")]
+    (-> {"title" (str l-title " / " r-title)
+         "value" (str l-val " / " r-val)}
+        (merge additional-stuff))))
+
 (defn- node-count-fields [count-changes]
   (let [added-count (count-changes :added)
         removed-count (count-changes :removed)]
-    [(s-field "Removed"
-              (if (= 0 removed-count) "-"
-                  (str "*↓* *_" removed-count "_*")))
-     (s-field "Added"
-              (if (= 0 added-count) "-"
-                  (str "*↑* *`" added-count "`*")))]))
+    (->> [(s-field "Removed"
+                   (if (= 0 removed-count) "-"
+                       (str "*↓* *_" removed-count "_*")))
+          (s-field "Added"
+                   (if (= 0 added-count) "-"
+                       (str "*↑* *`" added-count "`*")))]
+         (apply merge-s-fields)
+         vector)))
 
 (defn- node-summary [terminated existed added]
   (let [count-changes (node-count-changes terminated existed added)]
