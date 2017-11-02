@@ -183,11 +183,12 @@
                      (map #(data %))
                      (apply node-summary))
         node-count (summary :node-count)
-        fields (summary :fields)]
-    {"title" "Node count",
-     "color" "#36a64f",
+        node-count-field (s-field "Node count" (str "*" node-count "* nodes"))
+        other-fields (summary :fields)
+        fields (concat [node-count-field] other-fields)
+        ]
+    {"color" "#36a64f",
      "pretext" "*Summary*",
-     "text" (str "*" node-count "* nodes"),
      "mrkdwn_in" ["text" "pretext" "fields"],
      "fields" fields
      }))
