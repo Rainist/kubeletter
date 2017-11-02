@@ -13,6 +13,11 @@
        is
        (testing "float round"))
 
+  (->> (math/roundf -1.23456 3)
+       (= (float -1.235))
+       is
+       (testing "negative float round"))
+
   (->> (math/roundf 1.234567890123456 2)
        (= (float 1.23))
        is

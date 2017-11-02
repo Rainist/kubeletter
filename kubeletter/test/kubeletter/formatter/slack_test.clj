@@ -10,49 +10,36 @@
   top-node-samples
   {:terminated
    '[{"NAME" "ip-172-20-10-13.ap-northeast-1.compute.internal",
-      "CPU(cores)" (154 "m"),
-      "CPU%" (7 "%"),
-      "MEMORY(bytes)" (3827 "Mi"),
-      "MEMORY%" (48 "%")}]
+      "CPU(cores)" (154 "m"), "CPU%" (7 "%"), "MEMORY(bytes)" (3827 "Mi"), "MEMORY%" (48 "%")}]
    :added
    '[{"NAME" "ip-172-20-12-18.ap-northeast-1.compute.internal",
-      "CPU(cores)" (365 "m"),
-      "CPU%" (9 "%"),
-      "MEMORY(bytes)" (7480 "Mi"),
-      "MEMORY%" (46 "%")}],
+      "CPU(cores)" (365 "m"), "CPU%" (9 "%"), "MEMORY(bytes)" (7480 "Mi"), "MEMORY%" (46 "%")}],
    :existed-curr
    '[{"NAME" "ip-172-20-62-138.ap-northeast-1.compute.internal",
-      "CPU(cores)" (154 "m"),
-      "CPU%" (7 "%"),
-      "MEMORY(bytes)" (3827 "Mi"),
-      "MEMORY%" (48 "%")}
+      "CPU(cores)" (154 "m"), "CPU%" (7 "%"), "MEMORY(bytes)" (3827 "Mi"), "MEMORY%" (48 "%")}
      {"NAME" "ip-172-20-39-187.ap-northeast-1.compute.internal",
-      "CPU(cores)" (365 "m"),
-      "CPU%" (9 "%"),
-      "MEMORY(bytes)" (7480 "Mi"),
-      "MEMORY%" (46 "%")}],
+      "CPU(cores)" (365 "m"), "CPU%" (9 "%"), "MEMORY(bytes)" (7480 "Mi"), "MEMORY%" (46 "%")}],
    :existed-comp
    '[{"NAME" "ip-172-20-62-138.ap-northeast-1.compute.internal",
-      "CPU(cores)" (-10 "m"),
-      "CPU%" (3 "%"),
-      "MEMORY(bytes)" (-600 "Mi"),
-      "MEMORY%" (30 "%")}
+      "CPU(cores)" (-10 "m"), "CPU%" (3 "%"), "MEMORY(bytes)" (-600 "Mi"), "MEMORY%" (30 "%")}
      {"NAME" "ip-172-20-39-187.ap-northeast-1.compute.internal",
-      "CPU(cores)" (200 "m"),
-      "CPU%" (-7 "%"),
-      "MEMORY(bytes)" (500 "Mi"),
-      "MEMORY%" (10 "%")}],
+      "CPU(cores)" (200 "m"), "CPU%" (-7 "%"), "MEMORY(bytes)" (500 "Mi"), "MEMORY%" (10 "%")}],
    :existed-comp-zero
    '[{"NAME" "ip-172-20-62-138.ap-northeast-1.compute.internal",
-      "CPU(cores)" (0 "m"),
-      "CPU%" (0 "%"),
-      "MEMORY(bytes)" (0 "Mi"),
-      "MEMORY%" (0 "%")}
+      "CPU(cores)" (0 "m"), "CPU%" (0 "%"), "MEMORY(bytes)" (0 "Mi"), "MEMORY%" (0 "%")}
      {"NAME" "ip-172-20-39-187.ap-northeast-1.compute.internal",
-      "CPU(cores)" (0 "m"),
-      "CPU%" (0 "%"),
-      "MEMORY(bytes)" (0 "Mi"),
-      "MEMORY%" (0 "%")}],
+      "CPU(cores)" (0 "m"), "CPU%" (0 "%"), "MEMORY(bytes)" (0 "Mi"), "MEMORY%" (0 "%")}],
+   :avg-curr
+   '[{"NAME" "ip-172-20-62-138.ap-northeast-1.compute.internal",
+      "CPU(cores)" (154.098954 "m"), "CPU%" (7.90938039 "%"), "MEMORY(bytes)" (3827.039823 "Mi"), "MEMORY%" (48 "%")}
+     {"NAME" "ip-172-20-39-187.ap-northeast-1.compute.internal",
+      "CPU(cores)" (365.102938 "m"), "CPU%" (9.398043948 "%"), "MEMORY(bytes)" (7480.09380398 "Mi"), "MEMORY%" (46 "%")}
+     ],
+   :avg-comp
+   '[{"NAME" "ip-172-20-62-138.ap-northeast-1.compute.internal",
+      "CPU(cores)" (-10.93080 "m"), "CPU%" (3.09384 "%"), "MEMORY(bytes)" (-600.0938390 "Mi"), "MEMORY%" (30.02394802938 "%")}
+     {"NAME" "ip-172-20-39-187.ap-northeast-1.compute.internal",
+      "CPU(cores)" (200.89307448 "m"), "CPU%" (-7.0938403 "%"), "MEMORY(bytes)" (500.2903848702 "Mi"), "MEMORY%" (10.0293849 "%")}],
    })
 
 (def ^:private top-node-results
@@ -256,4 +243,22 @@
        is
        (testing "format for comparing with sameself"))
   )
+
+(def ^:private node-avg-fields #'kubeletter.formatter.slack/node-avg-fields)
+
+(deftest node-avg-fields-test
+  (->> (list (top-node-samples :avg-curr)
+             (top-node-samples :avg-comp))
+       node-avg-fields
+       (diff '({"title" "CPU(cores)",
+                "value" "77.05m  *↓* *_5.47m_*",
+                "short" true}
+               {"title" "CPU%", "value" "3.95%  *↑* *`1.55%`*", "short" true}
+               {"title" "MEMORY(bytes)",
+                "value" "1913.52Mi  *↓* *_300.05Mi_*",
+                "short" true}
+               {"title" "MEMORY%", "value" "47%  *↑* *`15.01%`*", "short" true}))
+       ((fn [[left right _]] (= left right)))
+       is
+       (testing "node avg fields")))
 

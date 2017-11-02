@@ -13,13 +13,13 @@
 
 (defn str-comp-field [comp]
   ;; ex) {"title" "CPU(cores)", "value" "1229m *↑* *`30m`*", "short" true}
-  (let [[raw-number unit] comp
-        number (math/roundf raw-number 2)
-        sign-prefix (if (>= number 0) " *↑*" " *↓*")
+  (let [[number unit] comp
+        abs-num (-> number (* -1) (max number) (math/roundf 2))
+        sign (if (>= number 0) " *↑*" " *↓*")
         format-prefix (if (>= number 0) (str "*`" ) (str "*_"))
         format-suffix (str/reverse format-prefix)]
     (if (zero? number) ""
-        (str sign-prefix " " format-prefix (max number (* -1 number)) unit format-suffix))))
+        (str sign " " format-prefix abs-num unit format-suffix))))
 
 
 (defn- top-node-field
