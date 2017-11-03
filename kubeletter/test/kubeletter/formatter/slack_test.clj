@@ -81,17 +81,7 @@
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
-      "title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
-      "color" "gray",
-      "mrkdwn_in" ["text" "pretext" "fields"],
-      "fields"
-      [{"title" "CPU%", "value" "7%  *↑* *`3%`*", "short" true}
-       {"title" "MEMORY%", "value" "48%  *↑* *`30%`*", "short" true}
-       {"title" "CPU(cores)", "value" "154m  *↓* *_10m_*", "short" true}
-       {"title" "MEMORY(bytes)",
-        "value" "3827Mi  *↓* *_600Mi_*",
-        "short" true}]}
-     {"title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
+      "title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
@@ -100,6 +90,16 @@
        {"title" "CPU(cores)", "value" "365m  *↑* *`200m`*", "short" true}
        {"title" "MEMORY(bytes)",
         "value" "7480Mi  *↑* *`500Mi`*",
+        "short" true}]}
+     {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
+      "color" "gray",
+      "mrkdwn_in" ["text" "pretext" "fields"],
+      "fields"
+      [{"title" "CPU%", "value" "7%  *↑* *`3%`*", "short" true}
+       {"title" "MEMORY%", "value" "48%  *↑* *`30%`*", "short" true}
+       {"title" "CPU(cores)", "value" "154m  *↓* *_10m_*", "short" true}
+       {"title" "MEMORY(bytes)",
+        "value" "3827Mi  *↓* *_600Mi_*",
         "short" true}]}
      ;;removed
      {"pretext" "Removed",
@@ -141,17 +141,7 @@
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
-      "title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
-      "color" "gray",
-      "mrkdwn_in" ["text" "pretext" "fields"],
-      "fields"
-      [{"title" "CPU%", "value" "7%  *↑* *`3%`*", "short" true}
-       {"title" "MEMORY%", "value" "48%  *↑* *`30%`*", "short" true}
-       {"title" "CPU(cores)", "value" "154m  *↓* *_10m_*", "short" true}
-       {"title" "MEMORY(bytes)",
-        "value" "3827Mi  *↓* *_600Mi_*",
-        "short" true}]}
-     {"title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
+      "title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
@@ -160,6 +150,16 @@
        {"title" "CPU(cores)", "value" "365m  *↑* *`200m`*", "short" true}
        {"title" "MEMORY(bytes)",
         "value" "7480Mi  *↑* *`500Mi`*",
+        "short" true}]}
+     {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
+      "color" "gray",
+      "mrkdwn_in" ["text" "pretext" "fields"],
+      "fields"
+      [{"title" "CPU%", "value" "7%  *↑* *`3%`*", "short" true}
+       {"title" "MEMORY%", "value" "48%  *↑* *`30%`*", "short" true}
+       {"title" "CPU(cores)", "value" "154m  *↓* *_10m_*", "short" true}
+       {"title" "MEMORY(bytes)",
+        "value" "3827Mi  *↓* *_600Mi_*",
         "short" true}]}
      ;;removed and addded are omitted
      ],;; end of attachment
@@ -187,17 +187,7 @@
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
-      "title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
-      "color" "gray",
-      "mrkdwn_in" ["text" "pretext" "fields"],
-      "fields"
-      [{"title" "CPU%", "value" "7%", "short" true}
-       {"title" "MEMORY%", "value" "48%", "short" true}
-       {"title" "CPU(cores)", "value" "154m", "short" true}
-       {"title" "MEMORY(bytes)",
-        "value" "3827Mi",
-        "short" true}]}
-     {"title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
+      "title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
@@ -206,6 +196,16 @@
        {"title" "CPU(cores)", "value" "365m", "short" true}
        {"title" "MEMORY(bytes)",
         "value" "7480Mi",
+        "short" true}]}
+     {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
+      "color" "gray",
+      "mrkdwn_in" ["text" "pretext" "fields"],
+      "fields"
+      [{"title" "CPU%", "value" "7%", "short" true}
+       {"title" "MEMORY%", "value" "48%", "short" true}
+       {"title" "CPU(cores)", "value" "154m", "short" true}
+       {"title" "MEMORY(bytes)",
+        "value" "3827Mi",
         "short" true}]}
      ;;removed and addded are omitted
      ],;; end of attachment

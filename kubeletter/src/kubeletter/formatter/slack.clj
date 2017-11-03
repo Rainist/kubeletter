@@ -57,6 +57,7 @@
 
 (defn- cook-node-added [data]
   (->> data
+       (sort-by #(-> % (get "CPU%") first) >)
        (map
         (fn [row]
           (let [row-name (row "NAME")]
@@ -74,6 +75,7 @@
 (defn- cook-node-existed [data]
   (let [comp-map (top-node-map (last data))]
     (->> (first data)
+         (sort-by #(-> % (get "CPU%") first) >)
          (map
           (fn [row]
             (let [row-name (row "NAME")]
