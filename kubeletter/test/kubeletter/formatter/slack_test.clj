@@ -255,3 +255,37 @@
        ((fn [[left right _]] (= left right)))
        is
        (testing "node avg fields")))
+
+
+(def ^:private cook-node-val #'kubeletter.formatter.slack/cook-node-val)
+
+(deftest cook-node-val-test
+  (->> (cook-node-val "CPU(cores)" '(49 "m"))
+       (= "49m")
+       is
+       (testing "cpu(cores) less than 50"))
+
+  (->> (cook-node-val "Memory(bytes)" '(49 "Mi"))
+       (= "49Mi")
+       is
+       (testing "memory(byetes) less than 50"))
+
+  (->> (cook-node-val "MEMORY%" '(79 "%"))
+       (= "79%")
+       is
+       (testing "memory% less than 80"))
+
+  (->> (cook-node-val "MEMORY%" '(81 "%"))
+       (= "`81`%")
+       is
+       (testing "memory% more than 80"))
+
+  (->> (cook-node-val "CPU%" '(49 "%"))
+       (= "49%")
+       is
+       (testing "cpu% less than 50"))
+
+  (->> (cook-node-val "CPU%" '(51 "%"))
+       (= "`51`%")
+       is
+       (testing "cpu% more more 50")))

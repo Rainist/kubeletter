@@ -11,6 +11,17 @@
        (map (fn [row] {(row "NAME") row}))
        (apply merge)))
 
+(defn- danger-val? [key val]
+  (let [[num unit] val
+        danger-level (case key "CPU%" 50 "MEMORY%" 80 999999)]
+    (> num danger-level)))
+
+(defn- cook-node-val [key val]
+  (let [[num unit] val]
+    (if (danger-val? key val)
+        (str "`" num "`" unit)
+        (str num unit))))
+
 (defn str-comp-field [comp]
   ;; ex) {"title" "CPU(cores)", "value" "1229m *↑* *`30m`*", "short" true}
   (let [[number unit] comp
@@ -21,13 +32,12 @@
     (if (zero? number) ""
         (str sign " " format-prefix abs-num unit format-suffix))))
 
-
 (defn- top-node-field
   ([field curr]
-   (let [curr-val (->> (curr field) (apply str))]
+   (let [curr-val (cook-node-val field (curr field))]
      {"title" field, "value" curr-val, "short" true}))
   ([field curr comp]
-   (let [curr-val (->> (curr field) (apply str))
+   (let [curr-val (cook-node-val field (curr field))
          comp-val (comp field)
          value (->> comp-val str-comp-field (str curr-val " ") trim)]
      {"title" field, "value" value, "short" true})))
@@ -78,9 +88,12 @@
          (sort-by #(-> % (get "CPU%") first) >)
          (map
           (fn [row]
-            (let [row-name (row "NAME")]
+            (let [row-name (row "NAME")
+                  row-color (if (or (danger-val? "CPU%" (row "CPU%"))
+                                    (danger-val? "MEMORY%" (row "MEMORY%")))
+                              "red" "gray")]
               {"title" row-name,
-               "color" "gray",
+               "color" row-color,
                "mrkdwn_in" ["text" "pretext" "fields"],
                "fields"
                (->> ["CPU%" "MEMORY%" "CPU(cores)" "MEMORY(bytes)"]
@@ -144,7 +157,7 @@
          (map
           (fn [[key val]]
             (let [comp-val (-> key node-avg-comp str-comp-field)]
-              (->> (-> (apply str val) (str " " comp-val) trim)
+              (->> (-> (cook-node-val key val) (str " " comp-val) trim)
                    (s-field key))))))))
 
 (defn- merge-s-fields [left right]
