@@ -3,6 +3,8 @@
             [kubeletter.utils.math :as math]
             [clojure.string :as str :refer [join trim]]))
 
+(def ^:private tag-room "<!here>")
+
 (defn- cook-etc [data]
   data)
 
@@ -51,8 +53,9 @@
 (defn- add-title-to-added [data]
   (add-pretext-to-list data "Added"))
 
-(defn- add-title-to-existed [data]
-  (add-pretext-to-list data "Indivisuals"))
+(defn- add-title-to-existed [warn? data]
+  (->> (if warn? (str "Indivisuals " tag-room) "Indivisuals")
+       (add-pretext-to-list data)))
 
 (defn- cook-node-removed [data]
   (if (empty? data) nil
@@ -82,8 +85,13 @@
        add-title-to-added
        (if (empty? data) nil)))
 
+(defn- dangerous-row? [row]
+  (or (danger-val? "CPU%" (row "CPU%"))
+      (danger-val? "MEMORY%" (row "MEMORY%"))))
+
 (defn- cook-node-existed [data]
-  (let [comp-map (top-node-map (last data))]
+  (let [comp-map (top-node-map (last data))
+        should-warn? (->> (first data) (map dangerous-row?) (reduce #(or %1 %2)))]
     (->> (first data)
          (sort-by #(-> % (get "CPU%") first) >)
          (map
@@ -99,7 +107,7 @@
                (->> ["CPU%" "MEMORY%" "CPU(cores)" "MEMORY(bytes)"]
                     (map #(top-node-field % row (comp-map row-name)))
                     vec)})))
-         add-title-to-existed)))
+         (add-title-to-existed should-warn?))))
 
 (defn- node-count-changes [terminated existed added]
   {:current

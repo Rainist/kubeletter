@@ -289,3 +289,36 @@
        (= "`51`%")
        is
        (testing "cpu% more more 50")))
+
+(def ^:private dangerous-row? #'kubeletter.formatter.slack/dangerous-row?)
+(def ^:private add-title-to-existed? #'kubeletter.formatter.slack/add-title-to-existed)
+
+(deftest attach-tagging-test
+  (->> {"CPU%" '(51 "%") "MEMORY%" '(10 "%")}
+       dangerous-row?
+       (= true)
+       is
+       (testing "dangerous row because of cpu"))
+
+  (->> {"CPU%" '(10 "%") "MEMORY%" '(81 "%")}
+       dangerous-row?
+       (= true)
+       is
+       (testing "dangerous row because of memory"))
+
+  (->> {"CPU%" '(10 "%") "MEMORY%" '(10 "%")}
+       dangerous-row?
+       (= false)
+       is
+       (testing "not dangerous row"))
+
+  (->> (add-title-to-existed? true [{}])
+       (= [{"pretext" "Indivisuals <!here>"}])
+       is
+       (testing "tagged"))
+
+  (->> (add-title-to-existed? false [{}])
+       (= [{"pretext" "Indivisuals"}])
+       is
+       (testing "not tagged"))
+       )
