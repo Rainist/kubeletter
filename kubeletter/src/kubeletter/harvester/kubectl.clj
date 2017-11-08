@@ -62,3 +62,8 @@
 
 (defn top-pod [namespace]
   (top namespace "pod"))
+
+(defn get-pod
+  ([] (get-obj "pod"))
+  ([namespace]
+   (get-obj namespace "pod")))
