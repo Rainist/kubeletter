@@ -71,13 +71,9 @@
       [{"title" "Node count", "value" "*3* nodes", "short" true}
        {"title" "Removed / Added", "value" "*↓* *_1_* / *↑* *`1`*", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU%", "value" "8%  *↓* *_2%_*", "short" true}
-       {"title" "MEMORY%", "value" "47%  *↑* *`20%`*", "short" true}
-       {"title" "CPU(cores)",
-        "value" "259.5m  *↑* *`95m`*",
-        "short" true}
-       {"title" "MEMORY(bytes)",
-        "value" "5653.5Mi  *↓* *_50Mi_*",
+       {"title" "CPU", "value" "259.5m / 8%  *↓* *_2%_*", "short" true}
+       {"title" "MEMORY",
+        "value" "5653.5Mi / 47%  *↑* *`20%`*",
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
@@ -85,21 +81,17 @@
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU%", "value" "9%  *↓* *_7%_*", "short" true}
-       {"title" "MEMORY%", "value" "46%  *↑* *`10%`*", "short" true}
-       {"title" "CPU(cores)", "value" "365m  *↑* *`200m`*", "short" true}
-       {"title" "MEMORY(bytes)",
-        "value" "7480Mi  *↑* *`500Mi`*",
+      [{"title" "CPU", "value" "365m / 9%  *↓* *_7%_*", "short" true}
+       {"title" "MEMORY",
+        "value" "7480Mi / 46%  *↑* *`10%`*",
         "short" true}]}
      {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU%", "value" "7%  *↑* *`3%`*", "short" true}
-       {"title" "MEMORY%", "value" "48%  *↑* *`30%`*", "short" true}
-       {"title" "CPU(cores)", "value" "154m  *↓* *_10m_*", "short" true}
-       {"title" "MEMORY(bytes)",
-        "value" "3827Mi  *↓* *_600Mi_*",
+      [{"title" "CPU", "value" "154m / 7%  *↑* *`3%`*", "short" true}
+       {"title" "MEMORY",
+        "value" "3827Mi / 48%  *↑* *`30%`*",
         "short" true}]}
      ;;removed
      {"pretext" "Removed",
@@ -112,10 +104,8 @@
       "color" "#1E90FF",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU%", "value" "9%", "short" true}
-       {"title" "MEMORY%", "value" "46%", "short" true}
-       {"title" "CPU(cores)", "value" "365m", "short" true}
-       {"title" "MEMORY(bytes)", "value" "7480Mi", "short" true}]}
+      [{"title" "CPU", "value" "365m / 9%", "short" true}
+       {"title" "MEMORY", "value" "7480Mi / 46%", "short" true}]}
      ],;; end of attachment
     },
    :no-added-and-removed
@@ -131,13 +121,9 @@
       [{"title" "Node count", "value" "*2* nodes", "short" true}
        {"title" "Removed / Added", "value" "- / -", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU%", "value" "8%  *↓* *_2%_*", "short" true}
-       {"title" "MEMORY%", "value" "47%  *↑* *`20%`*", "short" true}
-       {"title" "CPU(cores)",
-        "value" "259.5m  *↑* *`95m`*",
-        "short" true}
-       {"title" "MEMORY(bytes)",
-        "value" "5653.5Mi  *↓* *_50Mi_*",
+       {"title" "CPU", "value" "259.5m / 8%  *↓* *_2%_*", "short" true}
+       {"title" "MEMORY",
+        "value" "5653.5Mi / 47%  *↑* *`20%`*",
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
@@ -145,21 +131,17 @@
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU%", "value" "9%  *↓* *_7%_*", "short" true}
-       {"title" "MEMORY%", "value" "46%  *↑* *`10%`*", "short" true}
-       {"title" "CPU(cores)", "value" "365m  *↑* *`200m`*", "short" true}
-       {"title" "MEMORY(bytes)",
-        "value" "7480Mi  *↑* *`500Mi`*",
+      [{"title" "CPU", "value" "365m / 9%  *↓* *_7%_*", "short" true}
+       {"title" "MEMORY",
+        "value" "7480Mi / 46%  *↑* *`10%`*",
         "short" true}]}
      {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU%", "value" "7%  *↑* *`3%`*", "short" true}
-       {"title" "MEMORY%", "value" "48%  *↑* *`30%`*", "short" true}
-       {"title" "CPU(cores)", "value" "154m  *↓* *_10m_*", "short" true}
-       {"title" "MEMORY(bytes)",
-        "value" "3827Mi  *↓* *_600Mi_*",
+      [{"title" "CPU", "value" "154m / 7%  *↑* *`3%`*", "short" true}
+       {"title" "MEMORY",
+        "value" "3827Mi / 48%  *↑* *`30%`*",
         "short" true}]}
      ;;removed and addded are omitted
      ],;; end of attachment
@@ -177,36 +159,22 @@
       [{"title" "Node count", "value" "*2* nodes", "short" true}
        {"title" "Removed / Added", "value" "- / -", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU%", "value" "8%", "short" true}
-       {"title" "MEMORY%", "value" "47%", "short" true}
-       {"title" "CPU(cores)",
-        "value" "259.5m",
-        "short" true}
-       {"title" "MEMORY(bytes)",
-        "value" "5653.5Mi",
-        "short" true}]}
+       {"title" "CPU", "value" "259.5m / 8%", "short" true}
+       {"title" "MEMORY", "value" "5653.5Mi / 47%", "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
       "title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU%", "value" "9%", "short" true}
-       {"title" "MEMORY%", "value" "46%", "short" true}
-       {"title" "CPU(cores)", "value" "365m", "short" true}
-       {"title" "MEMORY(bytes)",
-        "value" "7480Mi",
-        "short" true}]}
+      [{"title" "CPU", "value" "365m / 9%", "short" true}
+       {"title" "MEMORY", "value" "7480Mi / 46%", "short" true}]}
      {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU%", "value" "7%", "short" true}
-       {"title" "MEMORY%", "value" "48%", "short" true}
-       {"title" "CPU(cores)", "value" "154m", "short" true}
-       {"title" "MEMORY(bytes)",
-        "value" "3827Mi",
-        "short" true}]}
+      [{"title" "CPU", "value" "154m / 7%", "short" true}
+       {"title" "MEMORY", "value" "3827Mi / 48%", "short" true}]}
      ;;removed and addded are omitted
      ],;; end of attachment
     },

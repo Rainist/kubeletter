@@ -24,9 +24,9 @@
         (str "`" num "`" unit)
         (str num unit))))
 
-(defn str-comp-field [comp]
+(defn str-comp-field [compared]
   ;; ex) {"title" "CPU(cores)", "value" "1229m *↑* *`30m`*", "short" true}
-  (let [[number unit] comp
+  (let [[number unit] compared
         abs-num (-> number (* -1) (max number) (math/roundf 2))
         sign (if (>= number 0) " *↑*" " *↓*")
         format-prefix (if (>= number 0) (str "*`" ) (str "*_"))
@@ -38,9 +38,9 @@
   ([field curr]
    (let [curr-val (cook-node-val field (curr field))]
      {"title" field, "value" curr-val, "short" true}))
-  ([field curr comp]
+  ([field curr compared]
    (let [curr-val (cook-node-val field (curr field))
-         comp-val (comp field)
+         comp-val (compared field)
          value (->> comp-val str-comp-field (str curr-val " ") trim)]
      {"title" field, "value" value, "short" true})))
 
@@ -89,25 +89,51 @@
   (or (danger-val? "CPU%" (row "CPU%"))
       (danger-val? "MEMORY%" (row "MEMORY%"))))
 
-(defn- cook-node-existed [data]
-  (let [comp-map (top-node-map (last data))
-        should-warn? (->> (first data) (map dangerous-row?) (reduce #(or %1 %2)))]
-    (->> (first data)
+(defn- existed-each-field [row comp-map]
+  (let [row-name (row "NAME")
+        row-color (-> (or (danger-val? "CPU%" (row "CPU%"))
+                          (danger-val? "MEMORY%" (row "MEMORY%")))
+                      (if "red" "gray"))]
+    {"title" row-name,
+     "color" row-color,
+     "mrkdwn_in" ["text" "pretext" "fields"],
+     "fields"
+     (->> ["CPU%" "MEMORY%" "CPU(cores)" "MEMORY(bytes)"]
+          (mapv #(top-node-field % row (comp-map row-name))))}))
+
+(defn- cook-node-existed [[curr compared]]
+  (let [comp-map (top-node-map compared)
+        should-warn? (->> curr (map dangerous-row?) (reduce #(or %1 %2)))]
+    (->> curr
          (sort-by #(-> % (get "CPU%") first) >)
-         (map
-          (fn [row]
-            (let [row-name (row "NAME")
-                  row-color (if (or (danger-val? "CPU%" (row "CPU%"))
-                                    (danger-val? "MEMORY%" (row "MEMORY%")))
-                              "red" "gray")]
-              {"title" row-name,
-               "color" row-color,
-               "mrkdwn_in" ["text" "pretext" "fields"],
-               "fields"
-               (->> ["CPU%" "MEMORY%" "CPU(cores)" "MEMORY(bytes)"]
-                    (map #(top-node-field % row (comp-map row-name)))
-                    vec)})))
+         (map #(existed-each-field % comp-map))
          (add-title-to-existed should-warn?))))
+
+(defn- s-field
+  ([title value]
+   (s-field title value true))
+  ([title value short]
+   {"title" title "value" value "short" short}))
+
+(defn- s-field-divider [title]
+  (s-field "" title false))
+
+(defn- top-node-field-compact [row]
+  (let [fields-map (->> (row "fields") (map #(hash-map (% "title") (% "value"))) (apply merge))
+        pure-cores (-> fields-map (get "CPU(cores)") (str/split #" ") first)
+        pure-bytes (-> fields-map (get "MEMORY(bytes)") (str/split #" ") first)]
+    (-> row
+        (dissoc "fields")
+        (merge {"fields"
+                (-> (->> (row "fields")
+                         (filterv (fn [f-row]
+                                    (not-any? #(= % (f-row "title")) ["CPU%" "CPU(cores)" "MEMORY%" "MEMORY(bytes)"]))))
+                    (concat [(s-field "CPU" (str pure-cores " / " (fields-map "CPU%")))
+                             (s-field "MEMORY" (str pure-bytes " / " (fields-map "MEMORY%")))])
+                    vec)}))))
+
+(defn- compact-fields [row-has-fields]
+  (->> row-has-fields (map top-node-field-compact)))
 
 (defn- node-count-changes [terminated existed added]
   {:current
@@ -118,15 +144,6 @@
    :removed
    (count terminated)
    })
-
-(defn- s-field
-  ([title value]
-   (s-field title value true))
-  ([title value short]
-   {"title" title "value" value "short" short}))
-
-(defn- s-field-divider [title]
-  (s-field "" title false))
 
 (defn- sum-val [[l-key l-val] [r-key r-val]]
   {l-key
@@ -221,10 +238,10 @@
    "username" "kubeletter",
    "mrkdwn" true,
    "attachments"
-   (->> [[(-> data cook-node-summary)]
-         (-> (:existed data) cook-node-existed vec)
+   (->> [(-> [(-> data cook-node-summary)] compact-fields vec)
+         (-> (:existed data) cook-node-existed compact-fields vec)
          [(-> (:terminated data) cook-node-removed)]
-         (-> (:added data) cook-node-added vec),
+         (-> (:added data) cook-node-added compact-fields vec),
          ]
         (apply concat)
         (remove nil?)
