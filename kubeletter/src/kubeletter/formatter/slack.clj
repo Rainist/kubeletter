@@ -118,10 +118,28 @@
 (defn- s-field-divider [title]
   (s-field "" title false))
 
+(defn- cpu-core-convert [cpu-core]
+  (let [reg #"([0-9|\.]+)(.+)"
+        [_ num-val-str unit] (re-find reg cpu-core)
+        num-val (-> num-val-str read-string)]
+    (if-not (= unit "m")
+      cpu-core
+      (-> (math/roundf (/ num-val 1000) 1)
+          str))))
+
+(defn- mem-byte-convert [mem-byte]
+  (let [reg #"([0-9|\.]+)(.+)"
+        [aa num-val-str unit] (re-find reg mem-byte)
+        num-val (-> num-val-str read-string)]
+    (if-not (= unit "Mi")
+      mem-byte
+      (-> (math/roundf (/ num-val 1000) 1)
+          (str "Gi")))))
+
 (defn- top-node-field-compact [row]
   (let [fields-map (->> (row "fields") (map #(hash-map (% "title") (% "value"))) (apply merge))
-        pure-cores (-> fields-map (get "CPU(cores)") (str/split #" ") first)
-        pure-bytes (-> fields-map (get "MEMORY(bytes)") (str/split #" ") first)]
+        pure-cores (-> fields-map (get "CPU(cores)") (str/split #" ") first cpu-core-convert)
+        pure-bytes (-> fields-map (get "MEMORY(bytes)") (str/split #" ") first mem-byte-convert)]
     (-> row
         (dissoc "fields")
         (merge {"fields"
@@ -225,8 +243,7 @@
         node-count (summary :node-count)
         node-count-field (s-field "Node count" (str "*" node-count "* nodes"))
         other-fields (summary :fields)
-        fields (concat [node-count-field] other-fields)
-        ]
+        fields (concat [node-count-field] other-fields)]
     {"color" "#36a64f",
      "pretext" "*Summary*",
      "mrkdwn_in" ["text" "pretext" "fields"],

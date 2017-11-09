@@ -71,9 +71,9 @@
       [{"title" "Node count", "value" "*3* nodes", "short" true}
        {"title" "Removed / Added", "value" "*↓* *_1_* / *↑* *`1`*", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU", "value" "259.5m / 8%  *↓* *_2%_*", "short" true}
+       {"title" "CPU", "value" "0.3 / 8%  *↓* *_2%_*", "short" true}
        {"title" "MEMORY",
-        "value" "5653.5Mi / 47%  *↑* *`20%`*",
+        "value" "5.7Gi / 47%  *↑* *`20%`*",
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
@@ -81,17 +81,17 @@
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "365m / 9%  *↓* *_7%_*", "short" true}
+      [{"title" "CPU", "value" "0.4 / 9%  *↓* *_7%_*", "short" true}
        {"title" "MEMORY",
-        "value" "7480Mi / 46%  *↑* *`10%`*",
+        "value" "7.5Gi / 46%  *↑* *`10%`*",
         "short" true}]}
      {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "154m / 7%  *↑* *`3%`*", "short" true}
+      [{"title" "CPU", "value" "0.2 / 7%  *↑* *`3%`*", "short" true}
        {"title" "MEMORY",
-        "value" "3827Mi / 48%  *↑* *`30%`*",
+        "value" "3.8Gi / 48%  *↑* *`30%`*",
         "short" true}]}
      ;;removed
      {"pretext" "Removed",
@@ -104,8 +104,8 @@
       "color" "#1E90FF",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "365m / 9%", "short" true}
-       {"title" "MEMORY", "value" "7480Mi / 46%", "short" true}]}
+      [{"title" "CPU", "value" "0.4 / 9%", "short" true}
+       {"title" "MEMORY", "value" "7.5Gi / 46%", "short" true}]}
      ],;; end of attachment
     },
    :no-added-and-removed
@@ -121,9 +121,9 @@
       [{"title" "Node count", "value" "*2* nodes", "short" true}
        {"title" "Removed / Added", "value" "- / -", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU", "value" "259.5m / 8%  *↓* *_2%_*", "short" true}
+       {"title" "CPU", "value" "0.3 / 8%  *↓* *_2%_*", "short" true}
        {"title" "MEMORY",
-        "value" "5653.5Mi / 47%  *↑* *`20%`*",
+        "value" "5.7Gi / 47%  *↑* *`20%`*",
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
@@ -131,17 +131,17 @@
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "365m / 9%  *↓* *_7%_*", "short" true}
+      [{"title" "CPU", "value" "0.4 / 9%  *↓* *_7%_*", "short" true}
        {"title" "MEMORY",
-        "value" "7480Mi / 46%  *↑* *`10%`*",
+        "value" "7.5Gi / 46%  *↑* *`10%`*",
         "short" true}]}
      {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "154m / 7%  *↑* *`3%`*", "short" true}
+      [{"title" "CPU", "value" "0.2 / 7%  *↑* *`3%`*", "short" true}
        {"title" "MEMORY",
-        "value" "3827Mi / 48%  *↑* *`30%`*",
+        "value" "3.8Gi / 48%  *↑* *`30%`*",
         "short" true}]}
      ;;removed and addded are omitted
      ],;; end of attachment
@@ -159,26 +159,32 @@
       [{"title" "Node count", "value" "*2* nodes", "short" true}
        {"title" "Removed / Added", "value" "- / -", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU", "value" "259.5m / 8%", "short" true}
-       {"title" "MEMORY", "value" "5653.5Mi / 47%", "short" true}]}
+       {"title" "CPU", "value" "0.3 / 8%", "short" true}
+       {"title" "MEMORY", "value" "5.7Gi / 47%", "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
       "title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "365m / 9%", "short" true}
-       {"title" "MEMORY", "value" "7480Mi / 46%", "short" true}]}
+      [{"title" "CPU", "value" "0.4 / 9%", "short" true}
+       {"title" "MEMORY", "value" "7.5Gi / 46%", "short" true}]}
      {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "154m / 7%", "short" true}
-       {"title" "MEMORY", "value" "3827Mi / 48%", "short" true}]}
+      [{"title" "CPU", "value" "0.2 / 7%", "short" true}
+       {"title" "MEMORY", "value" "3.8Gi / 48%", "short" true}]}
      ;;removed and addded are omitted
      ],;; end of attachment
     },
    })
+
+(->> (-> {:top-node (top-node-results :mixed)}
+         cook
+         (:top-node))
+     (diff (->> top-node-expected :mixed))
+     pprint)
 
 (deftest format-for-slack-test
   (->> (-> {:top-node (top-node-results :mixed)}
@@ -290,3 +296,27 @@
        is
        (testing "not tagged"))
        )
+
+(def ^:private cpu-core-convert #'kubeletter.formatter.slack/cpu-core-convert)
+(def ^:private mem-byte-convert #'kubeletter.formatter.slack/mem-byte-convert)
+
+(deftest cpu-mem-unit-convert-test
+  (->> "1032m" cpu-core-convert (= "1") is
+       (testing "cpu-core-convert 1032m"))
+  (->> "3672.4m" cpu-core-convert (= "3.7") is
+       (testing "cpu-core-convert 3672.4m"))
+  (->> "132m" cpu-core-convert (= "0.1") is
+       (testing "cpu-core-convert 132m"))
+  (->> "162m" cpu-core-convert (= "0.2") is
+       (testing "cpu-core-convert 162m"))
+
+  (->> "1032Mi" mem-byte-convert (= "1Gi") is
+       (testing "mem-byte-convert 1032Mi"))
+  (->> "3672.3Mi" mem-byte-convert (= "3.7Gi") is
+       (testing "mem-byte-convert 3672.3Mi"))
+  (->> "3827.3Mi" mem-byte-convert (= "3.8Gi") is
+       (testing "mem-byte-convert 3827.3Mi"))
+  (->> "132Mi" mem-byte-convert (= "0.1Gi") is
+       (testing "mem-byte-convert 132Mi"))
+  (->> "162Mi" mem-byte-convert (= "0.2Gi") is
+       (testing "mem-byte-convert 162Mi")))
