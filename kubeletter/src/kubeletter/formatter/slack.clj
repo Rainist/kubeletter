@@ -57,6 +57,9 @@
   (->> (if warn? (str "Indivisuals " tag-room) "Indivisuals")
        (add-pretext-to-list data)))
 
+(defn- compact-node-name [node-name]
+  (-> node-name (str/split #"\.") first))
+
 (defn- cook-node-removed [data]
   (if (empty? data) nil
       {"pretext" "Removed",
@@ -74,7 +77,7 @@
        (map
         (fn [row]
           (let [row-name (row "NAME")]
-            {"title" row-name,
+            {"title" (-> row-name compact-node-name),
              "color" "#1E90FF",
              "mrkdwn_in" ["text" "pretext" "fields"],
              "fields"
@@ -94,7 +97,7 @@
         row-color (-> (or (danger-val? "CPU%" (row "CPU%"))
                           (danger-val? "MEMORY%" (row "MEMORY%")))
                       (if "red" "gray"))]
-    {"title" row-name,
+    {"title" (-> row-name compact-node-name),
      "color" row-color,
      "mrkdwn_in" ["text" "pretext" "fields"],
      "fields"

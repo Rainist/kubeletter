@@ -77,7 +77,7 @@
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
-      "title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
+      "title" "ip-172-20-39-187",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
@@ -85,7 +85,7 @@
        {"title" "",
         "value" "_7.5Gi_ 46%  *↑* *`10%`*",
         "short" true}]}
-     {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
+     {"title" "ip-172-20-62-138",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
@@ -100,7 +100,7 @@
       "mrkdwn_in" ["text" "pretext" "fields"]}
      ;;added
      {"pretext" "Added",
-      "title" "ip-172-20-12-18.ap-northeast-1.compute.internal",
+      "title" "ip-172-20-12-18",
       "color" "#1E90FF",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
@@ -127,7 +127,7 @@
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
-      "title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
+      "title" "ip-172-20-39-187",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
@@ -135,7 +135,7 @@
        {"title" "",
         "value" "_7.5Gi_ 46%  *↑* *`10%`*",
         "short" true}]}
-     {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
+     {"title" "ip-172-20-62-138",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
@@ -163,13 +163,13 @@
        {"title" "MEMORY", "value" "_5.7Gi_ 47%", "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
-      "title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
+      "title" "ip-172-20-39-187",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
       [{"title" "", "value" "_0.4_ 9%", "short" true}
        {"title" "", "value" "_7.5Gi_ 46%", "short" true}]}
-     {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
+     {"title" "ip-172-20-62-138",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
@@ -314,3 +314,11 @@
        (testing "mem-byte-convert 132Mi"))
   (->> "162Mi" mem-byte-convert (= "0.2Gi") is
        (testing "mem-byte-convert 162Mi")))
+
+(def ^:private compact-node-name #'kubeletter.formatter.slack/compact-node-name)
+
+(deftest compact-node-name-test
+  (->> "ip-172-20-48-202.ap-northeast-1.compute.internal"
+       compact-node-name
+       (= "ip-172-20-48-202")
+       is (testing "compact-node-name test")))
