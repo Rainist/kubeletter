@@ -71,28 +71,22 @@
       [{"title" "Node count", "value" "*3* nodes", "short" true}
        {"title" "Removed / Added", "value" "*↓* *_1_* / *↑* *`1`*", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU", "value" "_0.3_ 8%  *↓* *_2%_*", "short" true}
-       {"title" "MEMORY",
-        "value" "_5.7Gi_ 47%  *↑* *`20%`*",
-        "short" true}]}
+       {"title" "CPU", "value" "_0.3_->*8%*  *↓* *_2%_*", "short" true}
+       {"title" "MEMORY", "value" "_5.7Gi_->*47%*  *↑* *`20%`*", "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
       "title" "ip-172-20-39-187",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "", "value" "_0.4_ 9%  *↓* *_7%_*", "short" true}
-       {"title" "",
-        "value" "_7.5Gi_ 46%  *↑* *`10%`*",
-        "short" true}]}
+      [{"title" "", "value" "_0.4_->*9%*  *↓* *_7%_*", "short" true}
+       {"title" "", "value" "_7.5Gi_->*46%*  *↑* *`10%`*", "short" true}]}
      {"title" "ip-172-20-62-138",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "", "value" "_0.2_ 7%  *↑* *`3%`*", "short" true}
-       {"title" "",
-        "value" "_3.8Gi_ 48%  *↑* *`30%`*",
-        "short" true}]}
+      [{"title" "", "value" "_0.2_->*7%*  *↑* *`3%`*", "short" true}
+       {"title" "", "value" "_3.8Gi_->*48%*  *↑* *`30%`*", "short" true}]}
      ;;removed
      {"pretext" "Removed",
       "text" "ip-172-20-10-13.ap-northeast-1.compute.internal",
@@ -104,8 +98,8 @@
       "color" "#1E90FF",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "", "value" "_0.4_ 9%", "short" true}
-       {"title" "", "value" "_7.5Gi_ 46%", "short" true}]}
+      [{"title" "", "value" "_0.4_->*9%*", "short" true}
+       {"title" "", "value" "_7.5Gi_->*46%*", "short" true}]}
      ],;; end of attachment
     },
    :no-added-and-removed
@@ -121,28 +115,22 @@
       [{"title" "Node count", "value" "*2* nodes", "short" true}
        {"title" "Removed / Added", "value" "- / -", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU", "value" "_0.3_ 8%  *↓* *_2%_*", "short" true}
-       {"title" "MEMORY",
-        "value" "_5.7Gi_ 47%  *↑* *`20%`*",
-        "short" true}]}
+       {"title" "CPU", "value" "_0.3_->*8%*  *↓* *_2%_*", "short" true}
+       {"title" "MEMORY", "value" "_5.7Gi_->*47%*  *↑* *`20%`*", "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
       "title" "ip-172-20-39-187",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "", "value" "_0.4_ 9%  *↓* *_7%_*", "short" true}
-       {"title" "",
-        "value" "_7.5Gi_ 46%  *↑* *`10%`*",
-        "short" true}]}
+      [{"title" "", "value" "_0.4_->*9%*  *↓* *_7%_*", "short" true}
+       {"title" "", "value" "_7.5Gi_->*46%*  *↑* *`10%`*", "short" true}]}
      {"title" "ip-172-20-62-138",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "", "value" "_0.2_ 7%  *↑* *`3%`*", "short" true}
-       {"title" "",
-        "value" "_3.8Gi_ 48%  *↑* *`30%`*",
-        "short" true}]}
+      [{"title" "", "value" "_0.2_->*7%*  *↑* *`3%`*", "short" true}
+       {"title" "", "value" "_3.8Gi_->*48%*  *↑* *`30%`*", "short" true}]}
      ;;removed and addded are omitted
      ],;; end of attachment
     },
@@ -159,22 +147,22 @@
       [{"title" "Node count", "value" "*2* nodes", "short" true}
        {"title" "Removed / Added", "value" "- / -", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU", "value" "_0.3_ 8%", "short" true}
-       {"title" "MEMORY", "value" "_5.7Gi_ 47%", "short" true}]}
+       {"title" "CPU", "value" "_0.3_->*8%*", "short" true}
+       {"title" "MEMORY", "value" "_5.7Gi_->*47%*", "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
       "title" "ip-172-20-39-187",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "", "value" "_0.4_ 9%", "short" true}
-       {"title" "", "value" "_7.5Gi_ 46%", "short" true}]}
+      [{"title" "", "value" "_0.4_->*9%*", "short" true}
+       {"title" "", "value" "_7.5Gi_->*46%*", "short" true}]}
      {"title" "ip-172-20-62-138",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "", "value" "_0.2_ 7%", "short" true}
-       {"title" "", "value" "_3.8Gi_ 48%", "short" true}]}
+      [{"title" "", "value" "_0.2_->*7%*", "short" true}
+       {"title" "", "value" "_3.8Gi_->*48%*", "short" true}]}
      ;;removed and addded are omitted
      ],;; end of attachment
     },
