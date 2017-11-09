@@ -71,9 +71,9 @@
       [{"title" "Node count", "value" "*3* nodes", "short" true}
        {"title" "Removed / Added", "value" "*↓* *_1_* / *↑* *`1`*", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU", "value" "0.3 / 8%  *↓* *_2%_*", "short" true}
+       {"title" "CPU", "value" "_0.3_ 8%  *↓* *_2%_*", "short" true}
        {"title" "MEMORY",
-        "value" "5.7Gi / 47%  *↑* *`20%`*",
+        "value" "_5.7Gi_ 47%  *↑* *`20%`*",
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
@@ -81,17 +81,17 @@
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "0.4 / 9%  *↓* *_7%_*", "short" true}
-       {"title" "MEMORY",
-        "value" "7.5Gi / 46%  *↑* *`10%`*",
+      [{"title" "", "value" "_0.4_ 9%  *↓* *_7%_*", "short" true}
+       {"title" "",
+        "value" "_7.5Gi_ 46%  *↑* *`10%`*",
         "short" true}]}
      {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "0.2 / 7%  *↑* *`3%`*", "short" true}
-       {"title" "MEMORY",
-        "value" "3.8Gi / 48%  *↑* *`30%`*",
+      [{"title" "", "value" "_0.2_ 7%  *↑* *`3%`*", "short" true}
+       {"title" "",
+        "value" "_3.8Gi_ 48%  *↑* *`30%`*",
         "short" true}]}
      ;;removed
      {"pretext" "Removed",
@@ -104,8 +104,8 @@
       "color" "#1E90FF",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "0.4 / 9%", "short" true}
-       {"title" "MEMORY", "value" "7.5Gi / 46%", "short" true}]}
+      [{"title" "", "value" "_0.4_ 9%", "short" true}
+       {"title" "", "value" "_7.5Gi_ 46%", "short" true}]}
      ],;; end of attachment
     },
    :no-added-and-removed
@@ -121,9 +121,9 @@
       [{"title" "Node count", "value" "*2* nodes", "short" true}
        {"title" "Removed / Added", "value" "- / -", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU", "value" "0.3 / 8%  *↓* *_2%_*", "short" true}
+       {"title" "CPU", "value" "_0.3_ 8%  *↓* *_2%_*", "short" true}
        {"title" "MEMORY",
-        "value" "5.7Gi / 47%  *↑* *`20%`*",
+        "value" "_5.7Gi_ 47%  *↑* *`20%`*",
         "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
@@ -131,17 +131,17 @@
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "0.4 / 9%  *↓* *_7%_*", "short" true}
-       {"title" "MEMORY",
-        "value" "7.5Gi / 46%  *↑* *`10%`*",
+      [{"title" "", "value" "_0.4_ 9%  *↓* *_7%_*", "short" true}
+       {"title" "",
+        "value" "_7.5Gi_ 46%  *↑* *`10%`*",
         "short" true}]}
      {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "0.2 / 7%  *↑* *`3%`*", "short" true}
-       {"title" "MEMORY",
-        "value" "3.8Gi / 48%  *↑* *`30%`*",
+      [{"title" "", "value" "_0.2_ 7%  *↑* *`3%`*", "short" true}
+       {"title" "",
+        "value" "_3.8Gi_ 48%  *↑* *`30%`*",
         "short" true}]}
      ;;removed and addded are omitted
      ],;; end of attachment
@@ -159,32 +159,26 @@
       [{"title" "Node count", "value" "*2* nodes", "short" true}
        {"title" "Removed / Added", "value" "- / -", "short" true}
        {"title" "", "value" "Average", "short" false}
-       {"title" "CPU", "value" "0.3 / 8%", "short" true}
-       {"title" "MEMORY", "value" "5.7Gi / 47%", "short" true}]}
+       {"title" "CPU", "value" "_0.3_ 8%", "short" true}
+       {"title" "MEMORY", "value" "_5.7Gi_ 47%", "short" true}]}
      ;;Existed
      {"pretext" "Indivisuals",
       "title" "ip-172-20-39-187.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "0.4 / 9%", "short" true}
-       {"title" "MEMORY", "value" "7.5Gi / 46%", "short" true}]}
+      [{"title" "", "value" "_0.4_ 9%", "short" true}
+       {"title" "", "value" "_7.5Gi_ 46%", "short" true}]}
      {"title" "ip-172-20-62-138.ap-northeast-1.compute.internal",
       "color" "gray",
       "mrkdwn_in" ["text" "pretext" "fields"],
       "fields"
-      [{"title" "CPU", "value" "0.2 / 7%", "short" true}
-       {"title" "MEMORY", "value" "3.8Gi / 48%", "short" true}]}
+      [{"title" "", "value" "_0.2_ 7%", "short" true}
+       {"title" "", "value" "_3.8Gi_ 48%", "short" true}]}
      ;;removed and addded are omitted
      ],;; end of attachment
     },
    })
-
-(->> (-> {:top-node (top-node-results :mixed)}
-         cook
-         (:top-node))
-     (diff (->> top-node-expected :mixed))
-     pprint)
 
 (deftest format-for-slack-test
   (->> (-> {:top-node (top-node-results :mixed)}

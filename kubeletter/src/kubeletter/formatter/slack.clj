@@ -136,22 +136,29 @@
       (-> (math/roundf (/ num-val 1000) 1)
           (str "Gi")))))
 
-(defn- top-node-field-compact [row]
+(defn- top-node-field-compact [row option]
   (let [fields-map (->> (row "fields") (map #(hash-map (% "title") (% "value"))) (apply merge))
         pure-cores (-> fields-map (get "CPU(cores)") (str/split #" ") first cpu-core-convert)
-        pure-bytes (-> fields-map (get "MEMORY(bytes)") (str/split #" ") first mem-byte-convert)]
+        pure-bytes (-> fields-map (get "MEMORY(bytes)") (str/split #" ") first mem-byte-convert)
+        no-title? (= option :no-title)
+        cpu-title (if no-title? "" "CPU")
+        mem-title (if no-title? "" "MEMORY")]
+
     (-> row
         (dissoc "fields")
         (merge {"fields"
                 (-> (->> (row "fields")
                          (filterv (fn [f-row]
                                     (not-any? #(= % (f-row "title")) ["CPU%" "CPU(cores)" "MEMORY%" "MEMORY(bytes)"]))))
-                    (concat [(s-field "CPU" (str pure-cores " / " (fields-map "CPU%")))
-                             (s-field "MEMORY" (str pure-bytes " / " (fields-map "MEMORY%")))])
+                    (concat [(s-field cpu-title (str "_" pure-cores "_ " (fields-map "CPU%")))
+                             (s-field mem-title (str "_" pure-bytes "_ " (fields-map "MEMORY%")))])
                     vec)}))))
 
-(defn- compact-fields [row-has-fields]
-  (->> row-has-fields (map top-node-field-compact)))
+(defn- compact-fields
+  ([row-has-fields]
+   (compact-fields row-has-fields nil))
+  ([row-has-fields option]
+   (->> row-has-fields (map #(top-node-field-compact % option)))))
 
 (defn- node-count-changes [terminated existed added]
   {:current
@@ -256,9 +263,9 @@
    "mrkdwn" true,
    "attachments"
    (->> [(-> [(-> data cook-node-summary)] compact-fields vec)
-         (-> (:existed data) cook-node-existed compact-fields vec)
+         (-> (:existed data) cook-node-existed (compact-fields :no-title) vec)
          [(-> (:terminated data) cook-node-removed)]
-         (-> (:added data) cook-node-added compact-fields vec),
+         (-> (:added data) cook-node-added (compact-fields :no-title) vec),
          ]
         (apply concat)
         (remove nil?)
