@@ -28,6 +28,7 @@ configure `kubectl` to connect to your k8s cluster
 ```
 KUBERNETES_SERVICE_PORT=8001
 KUBERNETES_SERVICE_HOST=docker.for.mac.localhost
+INDIVISUAL_COUNT_LIMIT=3 # default is 5 and -1 means no limit
 ```
 
 ### Running as a k8s container

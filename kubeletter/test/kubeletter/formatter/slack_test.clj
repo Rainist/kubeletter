@@ -310,3 +310,55 @@
        compact-node-name
        (= "ip-172-20-48-202")
        is (testing "compact-node-name test")))
+
+(def ^:private limit-existed #'kubeletter.formatter.slack/limit-existed)
+
+(def ^:private mock-existed
+  [{"CPU%" '(51 "%"), "MEMORY%" '(70 "%")}
+   {"CPU%" '(49 "%"), "MEMORY%" '(70 "%")}
+   {"CPU%" '(49 "%"), "MEMORY%" '(70 "%")}
+   {"CPU%" '(49 "%"), "MEMORY%" '(70 "%")}
+   {"CPU%" '(49 "%"), "MEMORY%" '(70 "%")}
+   {"CPU%" '(69 "%"), "MEMORY%" '(70 "%")}
+   {"CPU%" '(49 "%"), "MEMORY%" '(70 "%")}
+   {"CPU%" '(79 "%"), "MEMORY%" '(70 "%")}
+   {"CPU%" '(49 "%"), "MEMORY%" '(70 "%")}
+   ])
+
+(deftest limit-existed-test
+  (->> (limit-existed 3 mock-existed)
+       count
+       (= 5)
+       is
+       (testing "limit 3 with extra 2 warnings"))
+
+  (->> (limit-existed -1 mock-existed)
+       count
+       (= (count mock-existed))
+       is
+       (testing "limit -1 means no limit"))
+
+  (->> (limit-existed 0 mock-existed)
+       count
+       (= 3)
+       is
+       (testing "limit 0 but there are 3 warnable objects")))
+
+(def ^:private decide-limit-value #'kubeletter.formatter.slack/decide-limit-value)
+
+(deftest decide-limit-value-test
+  (->> (decide-limit-value 3)
+       (= 3)
+       is
+       (testing "given 3 == output 3"))
+
+  (->> (decide-limit-value nil)
+       (= 5)
+       is
+       (testing "given nil == output (default) 5"))
+
+  (->> (decide-limit-value "7")
+       (= 7)
+       is
+       (testing "given \"7\" == output (default) 7"))
+  )

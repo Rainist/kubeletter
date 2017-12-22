@@ -53,8 +53,8 @@
 (defn- add-title-to-added [data]
   (add-pretext-to-list data "Added"))
 
-(defn- add-title-to-existed [warn? data]
-  (->> (if warn? (str "Indivisuals " tag-room) "Indivisuals")
+(defn- add-title-to-existed [title warn? data]
+  (->> (if warn? (str title " " tag-room) title)
        (add-pretext-to-list data)))
 
 (defn- compact-node-name [node-name]
@@ -104,13 +104,40 @@
      (->> ["CPU%" "MEMORY%" "CPU(cores)" "MEMORY(bytes)"]
           (mapv #(top-node-field % row (comp-map row-name))))}))
 
-(defn- cook-node-existed [[curr compared]]
+(defn- limitable-num? [limit-num]
+  (= limit-num (Math/abs limit-num)))
+
+(defn- limit-existed [limit-count existed-list]
+  (->> (let [[head tail] (split-at limit-count existed-list)]
+         (->> tail
+              (filter dangerous-row?)
+              (concat head)))
+       (if-not (limitable-num? limit-count) existed-list)))
+
+(defn- cook-node-existed-limit [[curr compared] limit]
   (let [comp-map (top-node-map compared)
+        title (if (limitable-num? limit) (str "*Indivisuals* _top " limit "(+)_") "Indivisuals")
         should-warn? (->> curr (map dangerous-row?) (reduce #(or %1 %2)))]
     (->> curr
          (sort-by #(-> % (get "CPU%") first) >)
+         (limit-existed limit)
          (map #(existed-each-field % comp-map))
-         (add-title-to-existed should-warn?))))
+         (add-title-to-existed title should-warn?))))
+
+(def ^:private fallback-default-limit 5)
+
+(defn- decide-limit-value [val]
+  (->> (let [stringified (str val)
+             numified (read-string stringified)
+             is-num? (number? numified)]
+         (if is-num? numified fallback-default-limit))
+       (if-not val fallback-default-limit)))
+
+(def ^:private LIMIT_ENV_KEY "INDIVISUAL_COUNT_LIMIT")
+(def ^:private INDIVISUAL_LIMIT (decide-limit-value (System/getenv LIMIT_ENV_KEY)))
+
+(defn- cook-node-existed [[curr compared]]
+  (cook-node-existed-limit [curr compared] INDIVISUAL_LIMIT))
 
 (defn- s-field
   ([title value]
