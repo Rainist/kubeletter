@@ -35,3 +35,17 @@ INDIVISUAL_COUNT_LIMIT=3 # default is 5 and -1 means no limit
 
 Simply pass just `RUNNING_INSIDE_K8S=true` to run `kubectl` properly inside a k8s cluster
 > No need to provide kube related env inside k8s cluster to execute kubectl
+
+## Troubleshooting
+
+### It seems like it's not working inside k8s cluster
+
+you can debug this by entering the pod and run necessaray commands like below
+- `kubectl get pod`
+- `kubectl get node`
+- `kubectl get hpa`
+- `kubectl top node`
+- `kubectl top pod`
+- `kubectl cluster-info`
+
+if any of commands above doesn't work, that's probably because your service account tied to your deployment has not enough permissions; in that case you might want to look at https://kubernetes.io/docs/reference/access-authn-authz/rbac/
