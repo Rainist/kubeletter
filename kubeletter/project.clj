@@ -1,8 +1,8 @@
-(defproject kubeletter "0.1.8-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+(defproject kubeletter "0.1.9-SNAPSHOT"
+  :description "Report status of k8s cluster"
+  :url "https://github.com/rainist/kubeletter"
+  :license {:name "MIT"
+            :url "https://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/data.json "0.2.6"]
                  [org.clojure/math.numeric-tower "0.0.4"]
