@@ -3,6 +3,20 @@
             [kubeletter.utils.math :as math]
             [clojure.string :as str :refer [join trim]]))
 
+(defn get-num-or-default-from-env [env-key default]
+  (let [env (System/getenv env-key)]
+    (-> env
+        empty?
+        (if default (read-string env)))))
+
+(def ^:private MEMORY_DANGER_LEVEL
+  (-> "MEMORY_DANGER_LEVEL_PERCENT"
+      (get-num-or-default-from-env 80)))
+
+(def ^:private CPU_DANGER_LEVEL
+  (-> "CPU_DANGER_LEVEL_PERCENT"
+      (get-num-or-default-from-env 50)))
+
 (def ^:private tag-room "<!here>")
 
 (defn- cook-etc [data]
@@ -15,7 +29,7 @@
 
 (defn- danger-val? [key val]
   (let [[num unit] val
-        danger-level (case key "CPU%" 50 "MEMORY%" 80 999999)]
+        danger-level (case key "CPU%" CPU_DANGER_LEVEL "MEMORY%" MEMORY_DANGER_LEVEL 999999)]
     (> num danger-level)))
 
 (defn- cook-node-val [key val]
